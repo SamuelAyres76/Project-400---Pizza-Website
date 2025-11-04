@@ -1,0 +1,96 @@
+.menu-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.menu-section {
+  margin-bottom: 3rem;
+}
+
+h2 {
+  color: #444;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.pizza-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.pizza-card {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.pizza-card:hover {
+  transform: translateY(-5px);
+}
+
+.pizza-card h3 {
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.description {
+  color: #666;
+  margin-bottom: 1rem;
+  min-height: 3em;
+}
+
+.price {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #2c5282;
+  margin-bottom: 1rem;
+}
+
+.order-btn {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.2s ease;
+}
+
+.order-btn:hover {
+  background-color: #45a049;
+}
+
+.create-your-own {
+  text-align: center;
+  margin-top: 3rem;
+  padding: 2rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.create-btn {
+  display: inline-block;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  padding: 1rem 2rem;
+  border-radius: 4px;
+  margin-top: 1rem;
+  transition: background-color 0.2s ease;
+}
+
+.create-btn:hover {
+  background-color: #0056b3;
+}

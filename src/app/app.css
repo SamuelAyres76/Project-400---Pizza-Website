@@ -1,0 +1,17 @@
+main {
+  padding: 2rem;
+  min-height: calc(100vh - 140px); /* Adjust based on navbar and footer height */
+}
+
+/* Reset some basic elements */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+}
