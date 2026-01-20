@@ -1,23 +1,53 @@
 <footer class="footer">
-  <div class="footer-content">
-    <div class="footer-section">
-      <h3>Contact Us</h3>
-      <p>Email: info@pizzawebsite.com</p>
-      <p>Phone: (123) 456-7890</p>
-    </div>
-    <div class="footer-section">
-      <h3>Hours</h3>
-      <p>Mon-Thu: 11am-10pm</p>
-      <p>Fri-Sun: 11am-11pm</p>
-    </div>
-    <div class="footer-section">
-      <h3>Follow Us</h3>
-      <p>Facebook</p>
-      <p>Instagram</p>
-      <p>Twitter</p>
-    </div>
+  <div class="wave-container">
+    <svg class="wave wave-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
+      <path class="wave1" d="M0,160L48,170.7C96,181,192,203,288,197.3C384,192,480,160,576,154.7C672,149,768,171,864,165.3C960,160,1056,128,1152,128C1248,128,1344,160,1392,176L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+    </svg>
+    <svg class="wave wave-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
+      <path class="wave1" d="M0,160L48,170.7C96,181,192,203,288,197.3C384,192,480,160,576,154.7C672,149,768,171,864,165.3C960,160,1056,128,1152,128C1248,128,1344,160,1392,176L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+    </svg>
   </div>
-  <div class="footer-bottom">
-    <p>&copy; 2025 Pizza Website. All rights reserved.</p>
+  
+  <div class="footer-content">
+    <div class="scroll-to-top">
+      <button class="top-button" (click)="scrollToTop()">
+        Return To Top
+        <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 19V5M5 12l7-7 7 7"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="social-section">
+      <h3>Follow us!</h3>
+      <div class="social-icons">
+        <a href="#" class="social-icon" aria-label="YouTube">
+          <img src="/assets/images/youtube.png" alt="YouTube" />
+        </a>
+        <a href="#" class="social-icon" aria-label="Threads">
+          <img src="/assets/images/threads.png" alt="Threads" />
+        </a>
+        <a href="#" class="social-icon" aria-label="Instagram">
+          <img src="/assets/images/instagram.png" alt="Instagram" />
+        </a>
+        <a href="#" class="social-icon" aria-label="Twitter">
+          <img src="/assets/images/twitter.png" alt="Twitter" />
+        </a>
+        <a href="#" class="social-icon" aria-label="Facebook">
+          <img src="/assets/images/facebook.png" alt="Facebook" />
+        </a>
+      </div>
+    </div>
+
+    <div class="contact-section">
+      <h3>Any questions?</h3>
+      <a href="tel:+353100000000" class="contact-button">
+        Contact Us: +353100 000 0000
+      </a>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 Luigi's Pizzeria, All rights reserved</p>
+    </div>
   </div>
 </footer>

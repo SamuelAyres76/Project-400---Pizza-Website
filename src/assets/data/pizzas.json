@@ -1,0 +1,142 @@
+[
+  {
+    "id": 1,
+    "name": "Plain Pizza",
+    "description": "Mozzarella, Margherita",
+    "price": 8.50,
+    "currency": "€",
+    "toppings": [],
+    "divisions": 0,
+    "image": "/assets/images/pizzas/plain-pizza.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Pepperoni Pizza",
+    "description": "Mozzarella, Margherita, Pepperoni [x3]",
+    "price": 10.50,
+    "currency": "€",
+    "toppings": [{"value": "pepperoni", "count": 3}],
+    "divisions": 0,
+    "image": "/assets/images/pizzas/pepperoni-pizza.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Meat Feast",
+    "description": "Mozzarella, Margherita, Pepperoni, Bacon, Ham [x3]",
+    "price": 13.50,
+    "currency": "€",
+    "toppings": [{"value": "pepperoni", "count": 3}, {"value": "bacon", "count": 3}, {"value": "ham", "count": 3}],
+    "divisions": 0,
+    "image": "/assets/images/pizzas/meat-feast-pizza.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Vegetarian",
+    "description": "Mozzarella, Margherita, Mushrooms, Olives, Jalapeños",
+    "price": 11.50,
+    "currency": "€",
+    "toppings": [{"value": "mushroom", "count": 1}, {"value": "olive", "count": 1}, {"value": "jalapeno", "count": 1}],
+    "divisions": 0,
+    "image": "/assets/images/pizzas/vegetarian-pizza.jpg"
+  },
+  {
+    "id": 5,
+    "name": "BBQ Chicken",
+    "description": "Mozzarella, Margherita, Spicy Beef [x3]",
+    "price": 12.50,
+    "currency": "€",
+    "toppings": [{"value": "spicy_beef", "count": 3}],
+    "divisions": 0,
+    "image": "/assets/images/pizzas/bbq-chicken-pizza.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Hawaiian",
+    "description": "Mozzarella, Margherita, Ham [x3]",
+    "price": 11.00,
+    "currency": "€",
+    "toppings": [{"value": "ham", "count": 3}],
+    "divisions": 0,
+    "image": "/assets/images/pizzas/hawaiian-pizza.jpg"
+  },
+  {
+    "id": 7,
+    "name": "Supreme",
+    "description": "Mozzarella, Margherita, Pepperoni, Bacon, Mushrooms [x3]",
+    "price": 13.00,
+    "currency": "€",
+    "toppings": [{"value": "pepperoni", "count": 3}, {"value": "bacon", "count": 3}, {"value": "mushroom", "count": 3}],
+    "divisions": 0,
+    "image": "/assets/images/pizzas/supreme-pizza.jpg"
+  },
+  {
+    "id": 8,
+    "name": "Romana Pizza",
+    "description": "Mozzarella, Margherita, Ham, Mushrooms [x3]",
+    "price": 11.75,
+    "currency": "€",
+    "toppings": [{"value": "ham", "count": 3}, {"value": "mushroom", "count": 3}],
+    "divisions": 0,
+    "image": "/assets/images/pizzas/romana-pizza.jpg"
+  },
+  {
+    "id": 9,
+    "name": "Spicy Pizza",
+    "description": "Mozzarella, Margherita, Spicy Beef, Jalapeños [x3]",
+    "price": 12.00,
+    "currency": "€",
+    "toppings": [{"value": "spicy_beef", "count": 3}, {"value": "jalapeno", "count": 3}],
+    "divisions": 0,
+    "image": "/assets/images/pizzas/spicy-pizza.jpg"
+  },
+  {
+    "id": 10,
+    "name": "Pepperoni Express",
+    "description": "Mozzarella, Margherita, Pepperoni [x3]",
+    "price": 11.25,
+    "currency": "€",
+    "toppings": [{"value": "pepperoni", "count": 3}],
+    "divisions": 0,
+    "image": "/assets/images/pizzas/pepperoni-express-pizza.jpg"
+  },
+  {
+    "id": 11,
+    "name": "Bacon Deluxe",
+    "description": "Mozzarella, Margherita, Bacon [x3]",
+    "price": 12.25,
+    "currency": "€",
+    "toppings": [{"value": "bacon", "count": 3}],
+    "divisions": 0,
+    "image": "/assets/images/pizzas/bacon-deluxe-pizza.jpg"
+  },
+  {
+    "id": 12,
+    "name": "Ham Slam",
+    "description": "Mozzarella, Margherita, Ham [x3]",
+    "price": 12.00,
+    "currency": "€",
+    "toppings": [{"value": "ham", "count": 3}],
+    "divisions": 0,
+    "image": "/assets/images/pizzas/ham-slam-pizza.jpg"
+  },
+  {
+    "id": 13,
+    "name": "Plumber's Powerup",
+    "description": "Mozzarella, Margherita, Mushrooms [x3]",
+    "price": 10.75,
+    "currency": "€",
+    "toppings": [{"value": "mushroom", "count": 3}],
+    "divisions": 0,
+    "image": "/assets/images/pizzas/plumbers-powerup-pizza.jpg"
+  },
+  {
+    "id": 14,
+    "name": "Chef's Nightmare",
+    "description": "Mozzarella, Margherita, All Toppings [x3]",
+    "price": 15.50,
+    "currency": "€",
+    "toppings": [{"value": "pepperoni", "count": 3}, {"value": "bacon", "count": 3}, {"value": "ham", "count": 3}, {"value": "mushroom", "count": 3}, {"value": "spicy_beef", "count": 3}, {"value": "olive", "count": 3}, {"value": "jalapeno", "count": 3}],
+    "divisions": 0,
+    "image": "/assets/images/pizzas/chefs-nightmare-pizza.jpg"
+  }
+]

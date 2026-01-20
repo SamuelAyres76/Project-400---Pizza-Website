@@ -1,0 +1,52 @@
+.pizza-spin {
+  animation: spin 20s linear infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pizza-bounce {
+  width: 160px;
+  height: 160px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pizza {
+  position: relative;
+  width: 160px;
+  height: 160px;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.pizza-layer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.pizza-layer:first-child {
+  opacity: 1;
+}
+
+/* Half Pizza Clipping */
+.pizza-half-left {
+  clip-path: polygon(50% 0%, 50% 50%, 50% 100%, 0% 100%, 0% 0%);
+}
+
+.pizza-half-right {
+  clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%, 50% 50%);
+}

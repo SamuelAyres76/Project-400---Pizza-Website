@@ -1,0 +1,96 @@
+<div class="about-container">
+  <!-- Stats Section -->
+  <section class="stats-section">
+    <div class="stats-left">
+      <h2 class="stats-heading">Feeding Families<br>since 1987</h2>
+      <div class="stats-text">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus rhoncus enim est, ut bibendum augue sodales id.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce pellentesque dolor lectus, eu fringilla nunc vulputate nec.</p>
+        <p>Aenean quis elementum mauris. Vestibulum interdum gravida fermentum. Nam a ligula lorem. Integer et enim efficitur.</p>
+      </div>
+    </div>
+    <div class="stats-right">
+      <div class="stat-item">
+        <span class="stat-number">2</span>
+        <span class="stat-label">Lorem ipsum dolor sit amet.</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">5</span>
+        <span class="stat-label">Lorem ipsum dolor sit amet.</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">6</span>
+        <span class="stat-label">Lorem ipsum dolor sit amet.</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">2</span>
+        <span class="stat-label">Lorem ipsum dolor sit amet.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Employee Carousel -->
+  <section class="carousel-section">
+    <h2 class="carousel-title">Meet the Team</h2>
+    <ul class="list" #carouselList>
+      <li *ngFor="let item of carouselItems; trackBy: trackByFn"
+          [ngClass]="item.class"
+          (click)="onSlideClick(item)">
+        <img [src]="item.src" [alt]="item.name" />
+        <p class="employee-role">{{ item.name }} ({{ item.role }})</p>
+      </li>
+    </ul>
+  </section>
+
+  <!-- Angled Transition -->
+  <div class="angled-transition"></div>
+
+  <!-- History Timeline Section -->
+  <section class="history-section">
+    <h2 class="history-title">History of Luigi's</h2>
+    
+    <div class="timeline-item">
+      <div class="timeline-image">
+        <img src="../assets/images/tempImage.png" alt="Luigi's Pizzeria 1983-1990" />
+      </div>
+      <div class="timeline-content">
+        <h3 class="timeline-heading">(1983 - 1990) Lorem ipsum</h3>
+        <p class="timeline-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce pellentesque dolor lectus, eu fringilla nunc vulputate nec.</p>
+        <p class="timeline-text">Aenean quis elementum mauris. Vestibulum interdum gravida fermentum. Nam a ligula lorem. Integer et enim efficitur.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item reverse">
+      <div class="timeline-image">
+        <img src="../assets/images/tempImage.png" alt="Luigi's Pizzeria 1991-1999" />
+      </div>
+      <div class="timeline-content">
+        <h3 class="timeline-heading">(1991 - 1999) Lorem ipsum</h3>
+        <p class="timeline-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce pellentesque dolor lectus, eu fringilla nunc vulputate nec.</p>
+        <p class="timeline-text">Aenean quis elementum mauris. Vestibulum interdum gravida fermentum. Nam a ligula lorem. Integer et enim efficitur.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-image">
+        <img src="../assets/images/tempImage.png" alt="Luigi's Pizzeria 2000-2008" />
+      </div>
+      <div class="timeline-content">
+        <h3 class="timeline-heading">(2000 - 2008) Lorem ipsum</h3>
+        <p class="timeline-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce pellentesque dolor lectus, eu fringilla nunc vulputate nec.</p>
+        <p class="timeline-text">Aenean quis elementum mauris. Vestibulum interdum gravida fermentum. Nam a ligula lorem. Integer et enim efficitur.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item reverse">
+      <div class="timeline-image">
+        <img src="../assets/images/tempImage.png" alt="Luigi's Pizzeria 2008-Today" />
+      </div>
+      <div class="timeline-content">
+        <h3 class="timeline-heading">(2008 - Today) Lorem ipsum</h3>
+        <p class="timeline-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce pellentesque dolor lectus, eu fringilla nunc vulputate nec.</p>
+        <p class="timeline-text">Aenean quis elementum mauris. Vestibulum interdum gravida fermentum. Nam a ligula lorem. Integer et enim efficitur.</p>
+      </div>
+    </div>
+  </section>
+</div>

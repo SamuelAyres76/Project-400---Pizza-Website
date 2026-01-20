@@ -1,0 +1,40 @@
+<div class="home-container">
+  <!-- Pizza Carousel -->
+  <div class="carousel-wrapper">
+    <div class="carousel-track">
+      <div class="carousel-item" *ngFor="let pizza of pizzas">
+        <div class="pizza-card" (click)="editPizza(pizza)">
+          <h3>{{ pizza.name }}</h3>
+          <div class="pizza-visual">
+            <app-pizza-visual [toppings]="pizza.toppings" [divisions]="pizza.divisions" [size]="'12'"></app-pizza-visual>
+          </div>
+          <p class="description">{{ pizza.description }}</p>
+          <p class="price">{{ pizza.currency }}{{ pizza.price.toFixed(2) }}</p>
+        </div>
+      </div>
+      <!-- Duplicate for seamless loop -->
+      <div class="carousel-item" *ngFor="let pizza of pizzas">
+        <div class="pizza-card" (click)="editPizza(pizza)">
+          <h3>{{ pizza.name }}</h3>
+          <div class="pizza-visual">
+            <app-pizza-visual [toppings]="pizza.toppings" [divisions]="pizza.divisions" [size]="'12'"></app-pizza-visual>
+          </div>
+          <p class="description">{{ pizza.description }}</p>
+          <p class="price">{{ pizza.currency }}{{ pizza.price.toFixed(2) }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="action-buttons">
+    <button class="action-btn create-btn" (click)="navigateToCreate()">
+      <img src="/assets/images/sidebar/create.png" alt="Create" class="btn-icon">
+      <span class="btn-text">Create</span>
+    </button>
+    <button class="action-btn browse-btn" (click)="navigateToBrowse()">
+      <img src="/assets/images/sidebar/browse.png" alt="Browse" class="btn-icon">
+      <span class="btn-text">Browse</span>
+    </button>
+  </div>
+</div>

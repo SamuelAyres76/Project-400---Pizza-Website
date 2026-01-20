@@ -1,27 +1,27 @@
 import { Routes } from '@angular/router';
-import { MainPageComponent } from './pages/main-page/main-page';
-import { AboutUsComponent } from './pages/about-us/about-us';
-import { CreatePizzaComponent } from './pages/create-pizza/create-pizza';
+import { HomeComponent } from './pages/home/home';
+import { About } from './pages/about/about';
+import { CreateComponent } from './pages/create/create';
 import { CheckoutComponent } from './pages/checkout/checkout';
-import { OrderTrackerComponent } from './pages/order-tracker/order-tracker';
+import { TrackerComponent } from './pages/tracker/tracker';
 import { EmployeeComponent } from './pages/employee/employee';
 import { AuthComponent } from './pages/auth/auth';
-import { OrderHistoryComponent } from './pages/order-history/order-history';
-import { FavoritesComponent } from './pages/favorites/favorites';
+import { HistoryComponent } from './pages/history/history';
+import { SavedComponent } from './pages/saved/saved';
 import { AdminComponent } from './pages/admin/admin';
-import { MenuComponent } from './pages/menu/menu';
+import { BrowseComponent } from './pages/browse/browse';
 
 export const routes: Routes = [
-  { path: '', component: MainPageComponent },
-  { path: 'about', component: AboutUsComponent },
-  { path: 'create-pizza', component: CreatePizzaComponent },
+  { path: '', component: HomeComponent },
+  { path: 'about', component: About },
+  { path: 'create', component: CreateComponent },
   { path: 'checkout', component: CheckoutComponent },
-  { path: 'order-tracker', component: OrderTrackerComponent },
+  { path: 'tracker', component: TrackerComponent },
   { path: 'employee', component: EmployeeComponent },
   { path: 'auth', component: AuthComponent },
-  { path: 'menu', component: MenuComponent },
-  { path: 'order-history', component: OrderHistoryComponent },
-  { path: 'favorites', component: FavoritesComponent },
+  { path: 'browse', component: BrowseComponent },
+  { path: 'history', component: HistoryComponent },
+  { path: 'saved', component: SavedComponent },
   { path: 'admin', component: AdminComponent },
   { path: '**', redirectTo: '' } // Redirect invalid routes to home page
 ];

@@ -1,15 +1,96 @@
-<nav class="navbar">
-  <div class="navbar-brand">
-    <a routerLink="/">Pizza Website</a>
+<header class="navbar">
+  <div class="nav-inner">
+    <!-- centered brand -->
+    <div class="brand-center">
+      <a routerLink="/" class="logo-link">
+        <img src="../assets/images/logo.png" alt="Luigi's Pizzeria Logo" class="site-logo" />
+      </a>
+    </div>
+
+    <!-- menu button on the right (desktop animated menu #25 adapted) -->
+    <button class="menu-btn" aria-label="Open menu" (click)="toggleMenu()" [class.open]="isOpen">
+      <span class="bars">
+        <i></i>
+        <i></i>
+        <i></i>
+      </span>
+    </button>
   </div>
-  <div class="navbar-menu">
-    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
-    <a routerLink="/menu" routerLinkActive="active">Our Menu</a>
-    <a routerLink="/about" routerLinkActive="active">About Us</a>
-    <a routerLink="/create-pizza" routerLinkActive="active">Create Pizza</a>
-    <a routerLink="/order-tracker" routerLinkActive="active">Track Order</a>
-    <a routerLink="/favorites" routerLinkActive="active">Favorites</a>
-    <a routerLink="/order-history" routerLinkActive="active">Order History</a>
-    <a routerLink="/auth" routerLinkActive="active">Sign In</a>
+
+  <!-- sliding panel from the right with icon-based navigation -->
+  <div class="panel" [class.open]="isOpen">
+    <div class="panel-inner">
+      <!-- Main Navigation Grid -->
+      <div class="nav-grid">
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-item" (click)="closeMenu()">
+          <img src="../assets/images/sidebar/home.png" alt="Home" class="nav-icon" />
+          <span class="nav-label">Home</span>
+        </a>
+        <a routerLink="/about" routerLinkActive="active" class="nav-item" (click)="closeMenu()">
+          <img src="../assets/images/sidebar/about.png" alt="About" class="nav-icon" />
+          <span class="nav-label">About</span>
+        </a>
+        <a routerLink="/browse" routerLinkActive="active" class="nav-item" (click)="closeMenu()">
+          <img src="../assets/images/sidebar/browse.png" alt="Browse" class="nav-icon" />
+          <span class="nav-label">Browse</span>
+        </a>
+        <a routerLink="/create" routerLinkActive="active" class="nav-item" (click)="closeMenu()">
+          <img src="../assets/images/sidebar/create.png" alt="Create" class="nav-icon" />
+          <span class="nav-label">Create</span>
+        </a>
+        <a routerLink="/saved" routerLinkActive="active" class="nav-item" (click)="closeMenu()">
+          <img src="../assets/images/sidebar/saved.png" alt="Saved" class="nav-icon" />
+          <span class="nav-label">Saved</span>
+        </a>
+        <a routerLink="/history" routerLinkActive="active" class="nav-item" (click)="closeMenu()">
+          <img src="../assets/images/sidebar/history.png" alt="History" class="nav-icon" />
+          <span class="nav-label">History</span>
+        </a>
+        <a routerLink="/tracker" routerLinkActive="active" class="nav-item single" (click)="closeMenu()">
+          <img src="../assets/images/sidebar/tracker.png" alt="Tracker" class="nav-icon" />
+          <span class="nav-label">Tracker</span>
+        </a>
+      </div>
+
+      <!-- Divider -->
+      <div class="divider"></div>
+
+      <!-- Admin Section -->
+      <div class="nav-grid">
+        <a routerLink="/employee" routerLinkActive="active" class="nav-item" (click)="closeMenu()">
+          <img src="../assets/images/sidebar/employee.png" alt="Employee" class="nav-icon" />
+          <span class="nav-label">Employee</span>
+        </a>
+        <a routerLink="/admin" routerLinkActive="active" class="nav-item" (click)="closeMenu()">
+          <img src="../assets/images/sidebar/admin.png" alt="Admin" class="nav-icon" />
+          <span class="nav-label">Admin</span>
+        </a>
+      </div>
+
+      <!-- Divider -->
+      <div class="divider"></div>
+
+      <!-- Bottom Actions -->
+      <div class="bottom-actions">
+        <a routerLink="/checkout" routerLinkActive="active" class="action-btn checkout-btn" (click)="closeMenu()">
+          <span class="btn-label">Checkout</span>
+          <span class="btn-details">
+            <span class="item-count">{{ basketCount }} pizza{{ basketCount !== 1 ? 's' : '' }}</span>
+            <span class="btn-amount">€{{ basketTotal.toFixed(2) }}</span>
+          </span>
+        </a>
+        <a routerLink="/auth" routerLinkActive="active" class="action-btn auth-btn" (click)="closeMenu()">
+          Login / Logout
+        </a>
+      </div>
+
+      <!-- Spacer -->
+      <div class="spacer"></div>
+
+      <!-- Logout Button -->
+      <button class="logout-btn" (click)="logout()">
+        Logout
+      </button>
+    </div>
   </div>
-</nav>
+</header>

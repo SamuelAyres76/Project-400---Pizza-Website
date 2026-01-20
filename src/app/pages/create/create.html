@@ -1,0 +1,237 @@
+<div class="create-container">
+  <!-- Sticky Header with Progress Bar and Pizza -->
+  <div class="sticky-header">
+    <div class="progress-bar">
+      <span class="step active">Customise</span>
+      <span class="step">Checkout</span>
+      <span class="step">Track Order</span>
+    </div>
+
+    <!-- Spinning Pizza Container -->
+    <div class="pizza-container">
+      <div class="pizza-spin">
+        <div class="pizza-bounce" [ngClass]="{ 'bounce': isBouncing }">
+          <div class="pizza" 
+               [style.transform]="'scale(' + getPizzaScale() + ')'"
+               [style.transition]="isBouncing ? 'none' : 'transform 0.3s ease'">
+            <!-- Base -->
+            <img class="pizza-layer" src="../assets/images/pizzaTextures/pizza_base.png" alt="base" />
+            
+            <!-- Sauces -->
+            <img class="pizza-layer" 
+                 [src]="getPizzaImagePath('margharita')" 
+                 [style.opacity]="pizza.sauce === 'margharita' ? 1 : 0"
+                 alt="margharita" />
+            <img class="pizza-layer" 
+                 [src]="getPizzaImagePath('bbq')" 
+                 [style.opacity]="pizza.sauce === 'bbq' ? 1 : 0"
+                 alt="bbq" />
+            <img class="pizza-layer" 
+                 [src]="getPizzaImagePath('white')" 
+                 [style.opacity]="pizza.sauce === 'white' ? 1 : 0"
+                 alt="white garlic" />
+
+            <!-- Cheeses -->
+            <img class="pizza-layer" 
+                 [src]="getPizzaImagePath('mozzarella')" 
+                 [style.opacity]="pizza.cheese === 'mozzarella' ? 1 : 0"
+                 alt="mozzarella" />
+            <img class="pizza-layer" 
+                 [src]="getPizzaImagePath('parmesan')" 
+                 [style.opacity]="pizza.cheese === 'parmesan' ? 1 : 0"
+                 alt="parmesan" />
+            <img class="pizza-layer" 
+                 [src]="getPizzaImagePath('cheddar')" 
+                 [style.opacity]="pizza.cheese === 'cheddar' ? 1 : 0"
+                 alt="cheddar" />
+
+            <!-- Dividers -->
+            <img class="pizza-layer" 
+                 [src]="getPizzaImagePath('divider_half')" 
+                 [style.opacity]="pizza.divided ? 1 : 0"
+                 alt="half divider" />
+
+            <!-- Toppings - Full Pizza or Half 1 -->
+            <img *ngFor="let topping of allToppings" 
+                 class="pizza-layer"
+                 [ngClass]="pizza.divided ? 'pizza-half-left' : ''"
+                 [src]="getPizzaImagePath(topping.value)" 
+                 [style.opacity]="hasToppingOnHalf(topping.value, 1) ? 1 : 0"
+                 [attr.alt]="topping.label" />
+
+            <!-- Toppings - Half 2 (only when divided) -->
+            <img *ngFor="let topping of allToppings" 
+                 class="pizza-layer pizza-half-right"
+                 [src]="getPizzaImagePath(topping.value)" 
+                 [style.opacity]="pizza.divided && hasToppingOnHalf(topping.value, 2) ? 1 : 0"
+                 [attr.alt]="topping.label + ' half 2'" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="content">
+    <h1>Create your Pizza</h1>
+
+    <!-- Size Section -->
+    <section class="selection-section">
+      <h2>1. Select the Size - <span class="note">select one</span></h2>
+      <div class="options-grid">
+        <button *ngFor="let size of sizes"
+                class="option-button"
+                [class.selected]="pizza.size === size.value"
+                (click)="selectSize(size.value)">
+          <span class="size-label">{{ size.label }}</span>
+          <span class="price">{{ size.price }}</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Sauce Section -->
+    <section class="selection-section">
+      <h2>2. Select the Sauce - <span class="note">select one</span></h2>
+      <div class="options-grid">
+        <button *ngFor="let sauce of sauces"
+                class="option-button"
+                [class.selected]="pizza.sauce === sauce.value"
+                (click)="selectSauce(sauce.value)">
+          {{ sauce.label }}
+        </button>
+      </div>
+    </section>
+
+    <!-- Cheese Section -->
+    <section class="selection-section">
+      <h2>3. Select the Cheese - <span class="note">select one</span></h2>
+      <div class="options-grid">
+        <button *ngFor="let cheese of cheeses"
+                class="option-button"
+                [class.selected]="pizza.cheese === cheese.value"
+                (click)="selectCheese(cheese.value)">
+          {{ cheese.label }}
+        </button>
+      </div>
+    </section>
+
+    <!-- Divide Section -->
+    <section class="selection-section">
+      <h2>4. Divide your Pizza - <span class="note">select one</span></h2>
+      <div class="divide-options">
+        <button class="divide-button" 
+                [class.selected]="!pizza.divided"
+                (click)="pizza.divided = false; triggerBounce()">
+          <span>No Division</span>
+        </button>
+        <button class="divide-button" 
+                [class.selected]="pizza.divided"
+                (click)="pizza.divided = true; triggerBounce()">
+          <span>1/2</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Toppings Section -->
+    <section class="selection-section">
+      <h2>5. Choose your Toppings</h2>
+      <div class="toppings-info">
+        <p>
+          <strong>Get 3 toppings for free!</strong> Each additional topping is <strong>€0.80</strong>
+        </p>
+        <p *ngIf="getToppingsCost() > 0" class="extra-cost">
+          You have selected {{ getTotalToppings() }} toppings
+          (<span class="cost-highlight">+€{{ getToppingsCost().toFixed(2) }}</span> extra)
+        </p>
+      </div>
+
+      <!-- Single Pizza or First Half -->
+      <div *ngIf="!pizza.divided">
+        <h3 class="half-title">Whole Pizza</h3>
+        <div class="toppings-grid">
+          <div *ngFor="let topping of allToppings" class="topping-item">
+            <span class="topping-label">{{ topping.label }}</span>
+            <div class="topping-counter">
+              <button (click)="updateToppingCount(topping.value, topping.countHalf1 - 1, 1)" 
+                      [disabled]="topping.countHalf1 === 0"
+                      class="counter-btn">-</button>
+              <span class="counter-value" [style.color]="topping.countHalf1 > 0 ? '#4ECB71' : '#333'">{{ topping.countHalf1 }}</span>
+              <button (click)="updateToppingCount(topping.value, topping.countHalf1 + 1, 1)" 
+                      [disabled]="topping.countHalf1 === 3"
+                      class="counter-btn">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Divided Pizza - Two Halves -->
+      <div *ngIf="pizza.divided" class="divided-toppings">
+        <div class="half-section">
+          <h3 class="half-title">1st Half</h3>
+          <div class="toppings-grid">
+            <div *ngFor="let topping of allToppings" class="topping-item">
+              <span class="topping-label">{{ topping.label }}</span>
+              <div class="topping-counter">
+                <button (click)="updateToppingCount(topping.value, topping.countHalf1 - 1, 1)" 
+                        [disabled]="topping.countHalf1 === 0"
+                        class="counter-btn">-</button>
+                <span class="counter-value" [style.color]="topping.countHalf1 > 0 ? '#4ECB71' : '#333'">{{ topping.countHalf1 }}</span>
+                <button (click)="updateToppingCount(topping.value, topping.countHalf1 + 1, 1)" 
+                        [disabled]="topping.countHalf1 === 3"
+                        class="counter-btn">+</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="half-section">
+          <h3 class="half-title">2nd Half</h3>
+          <div class="toppings-grid">
+            <div *ngFor="let topping of allToppings" class="topping-item">
+              <span class="topping-label">{{ topping.label }}</span>
+              <div class="topping-counter">
+                <button (click)="updateToppingCount(topping.value, topping.countHalf2 - 1, 2)" 
+                        [disabled]="topping.countHalf2 === 0"
+                        class="counter-btn">-</button>
+                <span class="counter-value" [style.color]="topping.countHalf2 > 0 ? '#4ECB71' : '#333'">{{ topping.countHalf2 }}</span>
+                <button (click)="updateToppingCount(topping.value, topping.countHalf2 + 1, 2)" 
+                        [disabled]="topping.countHalf2 === 3"
+                        class="counter-btn">+</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pizza Name Section -->
+    <section class="selection-section">
+      <h2>Pizza Name <span class="note">optional</span></h2>
+      <input type="text" 
+             [(ngModel)]="pizza.name"
+             placeholder="Enter a name for your pizza..."
+             class="pizza-name-input">
+    </section>
+
+    <!-- Price Summary -->
+    <section class="price-summary">
+      <div class="price-row">
+        <span>{{ pizza.size }}" Pizza</span>
+        <span>€{{ getSizePrice().toFixed(2) }}</span>
+      </div>
+      <div class="price-row" *ngIf="getToppingsCost() > 0">
+        <span>Additional Toppings</span>
+        <span>€{{ getToppingsCost().toFixed(2) }}</span>
+      </div>
+      <div class="price-row total">
+        <span>Total</span>
+        <span>€{{ getTotalPrice().toFixed(2) }}</span>
+      </div>
+    </section>
+
+    <!-- Continue Button -->
+    <button class="continue-button" (click)="addToBasket()">
+      Add to Basket
+    </button>
+  </div>
+</div>

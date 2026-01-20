@@ -1,0 +1,23 @@
+<div class="tracker-container">
+  <div class="content">
+    <h1>Order Confirmed!</h1>
+    
+    <div class="end-demo-banner">
+      <p>🎉 End of Interim Demo 🎉</p>
+    </div>
+
+    <div class="order-details" *ngIf="order">
+      <div class="order-header">
+        <h2>Order ID: {{ order.orderId }}</h2>
+        <p class="timestamp">{{ order.timestamp | date:'short' }}</p>
+      </div>
+
+      <div class="json-section">
+        <h3>Order JSON Output</h3>
+        <pre class="json-output">{{ orderJson }}</pre>
+      </div>
+
+      <button class="back-btn" (click)="backToHome()">Back to Home</button>
+    </div>
+  </div>
+</div>

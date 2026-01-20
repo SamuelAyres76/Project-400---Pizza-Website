@@ -1,0 +1,26 @@
+<div class="menu-container">
+  <h1>Our Menu</h1>
+  
+  <div class="pizza-grid">
+    <div class="pizza-card" *ngFor="let pizza of getDisplayedPizzas()">
+      <div class="pizza-header">
+        <h3>{{ pizza.name }}</h3>
+      </div>
+      
+      <div class="pizza-image">
+        <app-pizza-visual [toppings]="pizza.toppings" [divisions]="pizza.divisions" [size]="'12'"></app-pizza-visual>
+      </div>
+      
+      <p class="description">{{ pizza.description }}</p>
+      
+      <div class="pizza-footer">
+        <p class="price">{{ pizza.currency }}{{ pizza.price.toFixed(2) }}</p>
+        <button class="edit-btn" (click)="editPizza(pizza)">Edit</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="load-more-container" *ngIf="hasMorePizzas()">
+    <button class="load-more-btn" (click)="showMore()">View More</button>
+  </div>
+</div>

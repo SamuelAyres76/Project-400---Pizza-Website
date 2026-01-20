@@ -1,0 +1,33 @@
+<div class="pizza-spin">
+  <div class="pizza-bounce">
+    <div class="pizza" 
+         [style.transform]="'scale(' + getPizzaScale() + ')'">
+      <!-- Base -->
+      <img class="pizza-layer" src="/assets/images/pizzaTextures/pizza_base.png" alt="base" />
+      
+      <!-- Default sauce and cheese -->
+      <img class="pizza-layer" 
+           src="/assets/images/pizzaTextures/pizza_margharita.png" 
+           [style.opacity]="1"
+           alt="margharita" />
+      <img class="pizza-layer" 
+           src="/assets/images/pizzaTextures/pizza_mozzarella.png" 
+           [style.opacity]="1"
+           alt="mozzarella" />
+
+      <!-- Divider if divided -->
+      <img class="pizza-layer" 
+           [src]="getPizzaImagePath('divider_half')" 
+           [style.opacity]="divisions > 0 ? 1 : 0"
+           alt="divider" />
+
+      <!-- Toppings -->
+      <img *ngFor="let topping of allToppings" 
+           class="pizza-layer"
+           [ngClass]="divisions > 0 ? 'pizza-half-left' : ''"
+           [src]="getPizzaImagePath(topping)" 
+           [style.opacity]="hasToppingOnHalf(topping, 1) ? 1 : 0"
+           [attr.alt]="topping" />
+    </div>
+  </div>
+</div>
