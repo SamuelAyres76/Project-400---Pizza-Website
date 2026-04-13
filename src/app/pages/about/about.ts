@@ -23,12 +23,12 @@ export class About implements OnInit, OnDestroy, AfterViewInit {
   private touchEndX = 0;
   
   employees = [
-    { id: '1', name: 'Sammy Ayres', role: 'Employee', src: '../assets/images/Employee1.png' },
-    { id: '2', name: 'Samson Ayres', role: 'Employee', src: '../assets/images/Employee2.png' },
-    { id: '3', name: 'Samantha Ayres', role: 'Employee', src: '../assets/images/Employee3.png' },
-    { id: '4', name: 'John Ayres', role: 'Employee', src: '../assets/images/Employee4.png' },
-    { id: '5', name: 'Samuel Ayres', role: 'Owner', src: '../assets/images/Owner.png' },
-    { id: '6', name: 'Sam Ayres', role: 'CEO', src: '../assets/images/CEO.png' }
+    { id: '1', name: 'Sammy Ayres', role: 'Employee', src: 'assets/images/Employee1.png' },
+    { id: '2', name: 'Samson Ayres', role: 'Employee', src: 'assets/images/Employee2.png' },
+    { id: '3', name: 'Samantha Ayres', role: 'Employee', src: 'assets/images/Employee3.png' },
+    { id: '4', name: 'John Ayres', role: 'Employee', src: 'assets/images/Employee4.png' },
+    { id: '5', name: 'Samuel Ayres', role: 'Owner', src: 'assets/images/Owner.png' },
+    { id: '6', name: 'Sam Ayres', role: 'CEO', src: 'assets/images/CEO.png' }
   ];
 
   currentIndex = 0;

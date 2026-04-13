@@ -170,7 +170,7 @@ export class CreateComponent implements OnInit {
   }
 
   getPizzaImagePath(texture: string): string {
-    return `../assets/images/pizzaTextures/pizza_${texture}.png`;
+    return `assets/images/pizzaTextures/pizza_${texture}.png`;
   }
 
   getTotalToppings(): number {

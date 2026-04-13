@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
   }
 
   loadPizzas() {
-    fetch('/assets/data/pizzas.json')
+    fetch('assets/data/pizzas.json')
       .then(response => response.json())
       .then(data => {
         this.pizzas = data;

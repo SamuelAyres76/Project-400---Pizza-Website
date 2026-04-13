@@ -27,7 +27,7 @@ export class PizzaVisualComponent {
   ];
 
   getPizzaImagePath(texture: string): string {
-    return `/assets/images/pizzaTextures/pizza_${texture}.png`;
+    return `assets/images/pizzaTextures/pizza_${texture}.png`;
   }
 
   getPizzaScale(): number {
@@ -50,10 +50,10 @@ export class PizzaVisualComponent {
   }
 
   getSauceImagePath(): string {
-    return `/assets/images/pizzaTextures/pizza_${this.sauce}.png`;
+    return `assets/images/pizzaTextures/pizza_${this.sauce}.png`;
   }
 
   getCheeseImagePath(): string {
-    return `/assets/images/pizzaTextures/pizza_${this.cheese}.png`;
+    return `assets/images/pizzaTextures/pizza_${this.cheese}.png`;
   }
 }
