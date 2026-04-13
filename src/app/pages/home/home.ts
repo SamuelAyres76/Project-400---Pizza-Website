@@ -23,6 +23,7 @@ interface Pizza {
 })
 export class HomeComponent implements OnInit {
   pizzas: Pizza[] = [];
+  popularPizzas: Pizza[] = [];
 
   constructor(private router: Router) {}
 
@@ -35,6 +36,7 @@ export class HomeComponent implements OnInit {
       .then(response => response.json())
       .then(data => {
         this.pizzas = data;
+        this.popularPizzas = this.pizzas.slice(0, 3);
       })
       .catch(error => console.error('Error loading pizzas:', error));
   }

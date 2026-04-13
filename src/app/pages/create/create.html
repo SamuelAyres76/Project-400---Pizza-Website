@@ -1,13 +1,11 @@
 <div class="create-container">
-  <!-- Sticky Header with Progress Bar and Pizza -->
-  <div class="sticky-header">
+  <div class="mobile-top-stack">
     <div class="progress-bar">
-      <span class="step active">Customise</span>
-      <span class="step">Checkout</span>
-      <span class="step">Track Order</span>
+      <span class="step active">Step 1: Build pizza</span>
+      <span class="step">Step 2: Review cart</span>
+      <span class="step">Step 3: Checkout</span>
     </div>
 
-    <!-- Spinning Pizza Container -->
     <div class="pizza-container">
       <div class="pizza-spin">
         <div class="pizza-bounce" [ngClass]="{ 'bounce': isBouncing }">
@@ -71,9 +69,78 @@
     </div>
   </div>
 
-  <!-- Main Content -->
-  <div class="content">
-    <h1>Create your Pizza</h1>
+  <div class="create-layout">
+    <aside class="desktop-pizza-panel" aria-label="Live pizza preview">
+      <div class="desktop-pizza-sticky">
+        <div class="desktop-pizza-square">
+          <div class="pizza-container">
+            <div class="pizza-spin">
+              <div class="pizza-bounce" [ngClass]="{ 'bounce': isBouncing }">
+                <div class="pizza"
+                     [style.transform]="'scale(' + getPizzaScale() + ')'"
+                     [style.transition]="isBouncing ? 'none' : 'transform 0.3s ease'">
+                  <img class="pizza-layer" src="../assets/images/pizzaTextures/pizza_base.png" alt="base" />
+
+                  <img class="pizza-layer"
+                       [src]="getPizzaImagePath('margharita')"
+                       [style.opacity]="pizza.sauce === 'margharita' ? 1 : 0"
+                       alt="margharita" />
+                  <img class="pizza-layer"
+                       [src]="getPizzaImagePath('bbq')"
+                       [style.opacity]="pizza.sauce === 'bbq' ? 1 : 0"
+                       alt="bbq" />
+                  <img class="pizza-layer"
+                       [src]="getPizzaImagePath('white')"
+                       [style.opacity]="pizza.sauce === 'white' ? 1 : 0"
+                       alt="white garlic" />
+
+                  <img class="pizza-layer"
+                       [src]="getPizzaImagePath('mozzarella')"
+                       [style.opacity]="pizza.cheese === 'mozzarella' ? 1 : 0"
+                       alt="mozzarella" />
+                  <img class="pizza-layer"
+                       [src]="getPizzaImagePath('parmesan')"
+                       [style.opacity]="pizza.cheese === 'parmesan' ? 1 : 0"
+                       alt="parmesan" />
+                  <img class="pizza-layer"
+                       [src]="getPizzaImagePath('cheddar')"
+                       [style.opacity]="pizza.cheese === 'cheddar' ? 1 : 0"
+                       alt="cheddar" />
+
+                  <img class="pizza-layer"
+                       [src]="getPizzaImagePath('divider_half')"
+                       [style.opacity]="pizza.divided ? 1 : 0"
+                       alt="half divider" />
+
+                  <img *ngFor="let topping of allToppings"
+                       class="pizza-layer"
+                       [ngClass]="pizza.divided ? 'pizza-half-left' : ''"
+                       [src]="getPizzaImagePath(topping.value)"
+                       [style.opacity]="hasToppingOnHalf(topping.value, 1) ? 1 : 0"
+                       [attr.alt]="topping.label" />
+
+                  <img *ngFor="let topping of allToppings"
+                       class="pizza-layer pizza-half-right"
+                       [src]="getPizzaImagePath(topping.value)"
+                       [style.opacity]="pizza.divided && hasToppingOnHalf(topping.value, 2) ? 1 : 0"
+                       [attr.alt]="topping.label + ' half 2'" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="content">
+      <div class="progress-bar desktop-progress">
+        <span class="step active">Step 1: Build pizza</span>
+        <span class="step">Step 2: Review cart</span>
+        <span class="step">Step 3: Checkout</span>
+      </div>
+
+      <h1>Create your Pizza</h1>
+      <p class="page-helper">Start by selecting size.</p>
 
     <!-- Size Section -->
     <section class="selection-section">
@@ -134,7 +201,15 @@
 
     <!-- Toppings Section -->
     <section class="selection-section">
-      <h2>5. Choose your Toppings</h2>
+      <h2>
+        5. Choose your Toppings
+        <span class="info-tooltip" tabindex="0" aria-label="Nutrition and allergen details">
+          ?
+          <span class="tooltip-content">
+            Nutrition and allergen details: Cheese contains milk. BBQ sauce may contain mustard. Some toppings may contain traces of gluten and soy.
+          </span>
+        </span>
+      </h2>
       <div class="toppings-info">
         <p>
           <strong>Get 3 toppings for free!</strong> Each additional topping is <strong>€0.80</strong>
@@ -213,25 +288,51 @@
              class="pizza-name-input">
     </section>
 
-    <!-- Price Summary -->
-    <section class="price-summary">
-      <div class="price-row">
-        <span>{{ pizza.size }}" Pizza</span>
-        <span>€{{ getSizePrice().toFixed(2) }}</span>
-      </div>
-      <div class="price-row" *ngIf="getToppingsCost() > 0">
-        <span>Additional Toppings</span>
-        <span>€{{ getToppingsCost().toFixed(2) }}</span>
-      </div>
-      <div class="price-row total">
-        <span>Total</span>
-        <span>€{{ getTotalPrice().toFixed(2) }}</span>
-      </div>
-    </section>
+      <div class="sticky-order-bar mobile-order-bar">
+      <!-- Price Summary -->
+      <section class="price-summary">
+        <div class="price-row">
+          <span>{{ pizza.size }}" Pizza</span>
+          <span>€{{ getSizePrice().toFixed(2) }}</span>
+        </div>
+        <div class="price-row" *ngIf="getToppingsCost() > 0">
+          <span>Additional Toppings</span>
+          <span>€{{ getToppingsCost().toFixed(2) }}</span>
+        </div>
+        <div class="price-row total">
+          <span>Total</span>
+          <span>€{{ getTotalPrice().toFixed(2) }}</span>
+        </div>
+      </section>
 
-    <!-- Continue Button -->
-    <button class="continue-button" (click)="addToBasket()">
-      Add to Basket
-    </button>
+      <!-- Continue Button -->
+      <button class="continue-button" (click)="addToBasket()">
+        Add to Basket
+      </button>
+      </div>
+    </div>
+
+    <aside class="desktop-checkout-panel" aria-label="Order summary">
+      <div class="desktop-checkout-sticky">
+        <section class="price-summary">
+          <div class="price-row">
+            <span>{{ pizza.size }}" Pizza</span>
+            <span>€{{ getSizePrice().toFixed(2) }}</span>
+          </div>
+          <div class="price-row" *ngIf="getToppingsCost() > 0">
+            <span>Additional Toppings</span>
+            <span>€{{ getToppingsCost().toFixed(2) }}</span>
+          </div>
+          <div class="price-row total">
+            <span>Total</span>
+            <span>€{{ getTotalPrice().toFixed(2) }}</span>
+          </div>
+        </section>
+
+        <button class="continue-button" (click)="addToBasket()">
+          Add to Basket
+        </button>
+      </div>
+    </aside>
   </div>
 </div>

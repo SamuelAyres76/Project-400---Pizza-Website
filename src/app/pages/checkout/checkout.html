@@ -1,25 +1,54 @@
 <div class="checkout-container">
   <!-- Progress Bar -->
   <div class="progress-bar">
-    <span class="step">Customise</span>
-    <span class="step active">Checkout</span>
-    <span class="step">Track Order</span>
+    <span class="step">Step 1: Build pizza</span>
+    <span class="step">Step 2: Review cart</span>
+    <span class="step active">Step 3: Checkout</span>
   </div>
 
   <div class="content">
     <h1>Order Summary</h1>
+    <p class="page-purpose">Confirm details and place your order.</p>
+    <p class="page-helper">Start by selecting size.</p>
+    <div class="predictability-notes">
+      <p>Checkout takes about 1-2 minutes.</p>
+      <p>Order tracking updates every 30 seconds.</p>
+    </div>
 
     <!-- Basket Items -->
     <section class="basket-section">
-      <h2>Your Pizzas</h2>
-      <div class="basket-items">
+      <div class="basket-headline-row">
+        <h2>Your Pizzas</h2>
+        <button
+          class="clear-btn"
+          *ngIf="basketItems.length > 0 && !showClearConfirmation"
+          (click)="promptClearBasket()">
+          Clear basket
+        </button>
+      </div>
+
+      <div class="clear-confirm" *ngIf="showClearConfirmation">
+        <p>Clear basket?</p>
+        <button class="secondary-btn" (click)="cancelClearBasket()">Cancel</button>
+        <button
+          class="confirm-clear-btn"
+          [disabled]="!canConfirmClear"
+          (click)="confirmClearBasket()">
+          {{ canConfirmClear ? 'Confirm clear' : 'Wait ' + clearCountdown + 's' }}
+        </button>
+      </div>
+
+      <div class="basket-items" *ngIf="basketItems.length > 0; else emptyBasketState">
         <div class="basket-item" *ngFor="let item of basketItems">
           <div class="item-left">
             <div class="pizza-visual">
               <app-pizza-visual 
                 [toppings]="convertToppingsToArray(item.toppingsHalf1)" 
+                [toppingsHalf2]="convertToppingsToArray(item.toppingsHalf2)"
                 [divisions]="item.divided ? 1 : 0" 
-                [size]="item.size">
+                [size]="item.size"
+                [sauce]="item.sauce"
+                [cheese]="item.cheese">
               </app-pizza-visual>
             </div>
           </div>
@@ -29,10 +58,17 @@
             <p class="size-sauce">{{ getSizeLabel(item.size) }} • {{ item.sauce }}</p>
             <p class="toppings">{{ getToppingsList(item.toppingsHalf1, item.divided) }}</p>
             <p class="price">€{{ item.totalPrice.toFixed(2) }}</p>
-            <button class="remove-btn" (click)="removeItem(item.id)">Remove</button>
+            <button class="secondary-btn" (click)="removeItem(item.id)">Remove</button>
           </div>
         </div>
       </div>
+
+      <ng-template #emptyBasketState>
+        <div class="empty-state">
+          <p>Your basket is empty. Go to Browse to add your first pizza.</p>
+          <button class="secondary-btn" (click)="goToBrowse()">Go to Browse</button>
+        </div>
+      </ng-template>
     </section>
 
     <!-- Personal Details -->
@@ -139,6 +175,13 @@
       </div>
     </section>
 
+    <section class="payment-section" *ngIf="canShowPaymentDetails()">
+      <h2>Payment Details</h2>
+      <div class="payment-card">
+        <p>TBD</p>
+      </div>
+    </section>
+
     <!-- Order Total -->
     <section class="total-section">
       <div class="total-row">
@@ -146,7 +189,7 @@
         <span>€{{ subtotal.toFixed(2) }}</span>
       </div>
       <div class="total-row discount">
-        <span>Interim Demo Discount (100%)</span>
+        <span>Usability Test Discount (100%)</span>
         <span>-€{{ discountAmount.toFixed(2) }}</span>
       </div>
       <div class="total-row" *ngIf="form.fulfillment === 'delivery'">
@@ -164,6 +207,16 @@
     </section>
 
     <!-- Buy Button -->
-    <button class="buy-btn" (click)="submitOrder()">Buy Now</button>
+    <button class="buy-btn" [disabled]="basketItems.length === 0" (click)="submitOrder()">Buy Now</button>
+  </div>
+
+  <div class="undo-toast" *ngIf="undoToastVisible" role="status" aria-live="polite">
+    <div class="undo-toast-body">
+      <span>Pizza removed. Undo?</span>
+      <button class="undo-btn" (click)="undoRemove()">Undo</button>
+    </div>
+    <div class="undo-progress-track">
+      <div class="undo-progress-bar" [style.width.%]="undoProgressPercent"></div>
+    </div>
   </div>
 </div>

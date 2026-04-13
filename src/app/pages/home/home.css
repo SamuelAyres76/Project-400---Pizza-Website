@@ -4,10 +4,14 @@
   padding: 2rem 0;
 }
 
+:root {
+  --home-section-gap: 2.5rem;
+}
+
 /* Carousel */
 .carousel-wrapper {
   overflow: hidden;
-  margin-bottom: 3rem;
+  margin-bottom: var(--home-section-gap);
   padding: 2rem 0;
   position: relative;
   max-width: 1400px;
@@ -107,6 +111,88 @@
   margin: 0;
 }
 
+.popular-section {
+  max-width: 1200px;
+  margin: 0 auto 2.25rem;
+  padding: 0 1.5rem;
+}
+
+.popular-section h2 {
+  margin: 0 0 0.4rem;
+  color: #1f2933;
+}
+
+.popular-section p {
+  margin: 0 0 1rem;
+  color: #4b5563;
+}
+
+.popular-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.popular-card {
+  border: none;
+  text-align: center;
+  border-radius: 12px;
+  background: white;
+  padding: 1.25rem;
+  min-height: 320px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.popular-card h3 {
+  margin: 0 0 1rem;
+  color: #333;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding-bottom: 0.75rem;
+  border-bottom: 3px solid #FF5964;
+}
+
+.popular-visual {
+  margin: 0.5rem 0 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 165px;
+}
+
+.popular-description {
+  margin: 0 0 1rem;
+  color: #666;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  min-height: 2.5rem;
+}
+
+.popular-price {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #333;
+  margin-top: auto;
+}
+
+.popular-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.popular-card:focus-visible {
+  outline: 3px solid #111827;
+  outline-offset: 2px;
+}
+
+.popular-card:active {
+  transform: translateY(0);
+}
+
 /* Action Buttons */
 .action-buttons {
   display: flex;
@@ -114,6 +200,7 @@
   gap: 3rem;
   padding: 0 2rem;
   flex-wrap: wrap;
+  margin-bottom: var(--home-section-gap);
 }
 
 .action-btn {
@@ -155,8 +242,26 @@
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {
+  :root {
+    --home-section-gap: 1.75rem;
+  }
+
   .carousel-item {
     width: 220px;
+  }
+
+  .popular-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .popular-card {
+    min-height: 280px;
+    padding: 1rem;
+  }
+
+  .popular-visual {
+    min-height: 120px;
   }
 
   .pizza-card {
@@ -183,5 +288,15 @@
 @media (max-width: 480px) {
   .carousel-item {
     width: 200px;
+  }
+
+  .popular-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 769px) {
+  .popular-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }

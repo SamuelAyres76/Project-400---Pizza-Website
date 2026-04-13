@@ -10,8 +10,11 @@ import { CommonModule } from '@angular/common';
 })
 export class PizzaVisualComponent {
   @Input() toppings: any[] = [];
+  @Input() toppingsHalf2: any[] = [];
   @Input() divisions: number = 0;
   @Input() size: string = '12';
+  @Input() sauce: string = 'margharita';
+  @Input() cheese: string = 'mozzarella';
 
   allToppings = [
     'pepperoni',
@@ -39,9 +42,18 @@ export class PizzaVisualComponent {
   }
 
   hasToppingOnHalf(toppingValue: string, half: number): boolean {
-    return this.toppings.some((topping: any) => {
+    const toppingsToCheck = half === 1 ? this.toppings : this.toppingsHalf2;
+    return toppingsToCheck.some((topping: any) => {
       const value = typeof topping === 'string' ? topping : topping.value;
       return value === toppingValue;
     });
+  }
+
+  getSauceImagePath(): string {
+    return `/assets/images/pizzaTextures/pizza_${this.sauce}.png`;
+  }
+
+  getCheeseImagePath(): string {
+    return `/assets/images/pizzaTextures/pizza_${this.cheese}.png`;
   }
 }

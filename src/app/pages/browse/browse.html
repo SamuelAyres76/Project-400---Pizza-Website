@@ -1,5 +1,7 @@
 <div class="menu-container">
   <h1>Our Menu</h1>
+  <p class="page-purpose">Choose a pizza and customize it.</p>
+  <p class="page-helper">Start by selecting size.</p>
   
   <div class="pizza-grid">
     <div class="pizza-card" *ngFor="let pizza of getDisplayedPizzas()">
@@ -15,7 +17,7 @@
       
       <div class="pizza-footer">
         <p class="price">{{ pizza.currency }}{{ pizza.price.toFixed(2) }}</p>
-        <button class="edit-btn" (click)="editPizza(pizza)">Edit</button>
+        <button class="secondary-btn" (click)="editPizza(pizza)">Customize</button>
       </div>
     </div>
   </div>

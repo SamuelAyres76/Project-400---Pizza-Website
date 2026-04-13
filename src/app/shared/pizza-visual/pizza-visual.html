@@ -5,15 +5,15 @@
       <!-- Base -->
       <img class="pizza-layer" src="/assets/images/pizzaTextures/pizza_base.png" alt="base" />
       
-      <!-- Default sauce and cheese -->
+      <!-- Sauce and cheese -->
       <img class="pizza-layer" 
-           src="/assets/images/pizzaTextures/pizza_margharita.png" 
+           [src]="getSauceImagePath()" 
            [style.opacity]="1"
-           alt="margharita" />
+           [attr.alt]="sauce" />
       <img class="pizza-layer" 
-           src="/assets/images/pizzaTextures/pizza_mozzarella.png" 
+           [src]="getCheeseImagePath()" 
            [style.opacity]="1"
-           alt="mozzarella" />
+           [attr.alt]="cheese" />
 
       <!-- Divider if divided -->
       <img class="pizza-layer" 
@@ -21,12 +21,19 @@
            [style.opacity]="divisions > 0 ? 1 : 0"
            alt="divider" />
 
-      <!-- Toppings -->
+      <!-- Toppings for Half 1 -->
       <img *ngFor="let topping of allToppings" 
            class="pizza-layer"
            [ngClass]="divisions > 0 ? 'pizza-half-left' : ''"
            [src]="getPizzaImagePath(topping)" 
            [style.opacity]="hasToppingOnHalf(topping, 1) ? 1 : 0"
+           [attr.alt]="topping" />
+
+      <!-- Toppings for Half 2 (only if divided) -->
+      <img *ngFor="let topping of allToppings" 
+           class="pizza-layer pizza-half-right"
+           [src]="getPizzaImagePath(topping)" 
+           [style.opacity]="divisions > 0 && hasToppingOnHalf(topping, 2) ? 1 : 0"
            [attr.alt]="topping" />
     </div>
   </div>

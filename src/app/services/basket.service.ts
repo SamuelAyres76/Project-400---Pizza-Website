@@ -55,6 +55,13 @@ export class BasketService {
     this.basketItems.next([...currentItems, item]);
   }
 
+  insertItemAt(item: BasketItem, index: number): void {
+    const currentItems = [...this.basketItems.value];
+    const safeIndex = Math.max(0, Math.min(index, currentItems.length));
+    currentItems.splice(safeIndex, 0, item);
+    this.basketItems.next(currentItems);
+  }
+
   removeItem(id: string): void {
     const currentItems = this.basketItems.value;
     this.basketItems.next(currentItems.filter(item => item.id !== id));

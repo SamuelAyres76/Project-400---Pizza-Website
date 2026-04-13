@@ -37,4 +37,19 @@
       <span class="btn-text">Browse</span>
     </button>
   </div>
+
+  <section class="popular-section">
+    <h2>Popular Choices</h2>
+    <p>Three favourites picked by most customers this week.</p>
+    <div class="popular-grid">
+      <button class="popular-card" *ngFor="let pizza of popularPizzas" (click)="editPizza(pizza)">
+        <h3>{{ pizza.name }}</h3>
+        <div class="popular-visual">
+          <app-pizza-visual [toppings]="pizza.toppings" [divisions]="pizza.divisions" [size]="'12'"></app-pizza-visual>
+        </div>
+        <p class="popular-description">{{ pizza.description }}</p>
+        <span class="popular-price">{{ pizza.currency }}{{ pizza.price.toFixed(2) }}</span>
+      </button>
+    </div>
+  </section>
 </div>
