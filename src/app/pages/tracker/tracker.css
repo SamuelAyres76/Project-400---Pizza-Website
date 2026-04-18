@@ -123,3 +123,32 @@
     max-height: 400px;
   }
 }
+
+:host-context(body.dark-mode) .tracker-container {
+  background: linear-gradient(135deg, #171717 0%, #202020 100%);
+}
+
+:host-context(body.dark-mode) .content h1,
+:host-context(body.dark-mode) .order-header h2,
+:host-context(body.dark-mode) .json-section h3 {
+  color: #f2f2f2;
+}
+
+:host-context(body.dark-mode) .order-details {
+  background: #242424;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+}
+
+:host-context(body.dark-mode) .timestamp {
+  color: #c3c3c3;
+}
+
+:host-context(body.dark-mode) .json-output {
+  background: #1a1a1a;
+  border-color: #3f3f3f;
+  color: #e8e8e8;
+}
+
+:host-context(body.dark-mode) .order-header {
+  border-bottom-color: #3f3f3f;
+}

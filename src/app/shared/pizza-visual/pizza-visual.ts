@@ -13,6 +13,7 @@ export class PizzaVisualComponent {
   @Input() toppingsHalf2: any[] = [];
   @Input() divisions: number = 0;
   @Input() size: string = '12';
+  @Input() uniformSize: boolean = false;
   @Input() sauce: string = 'margharita';
   @Input() cheese: string = 'mozzarella';
 
@@ -31,6 +32,10 @@ export class PizzaVisualComponent {
   }
 
   getPizzaScale(): number {
+    if (this.uniformSize) {
+      return 1;
+    }
+
     switch (this.size) {
       case '10':
         return 0.9;

@@ -188,10 +188,6 @@
         <span>Subtotal</span>
         <span>€{{ subtotal.toFixed(2) }}</span>
       </div>
-      <div class="total-row discount">
-        <span>Usability Test Discount (100%)</span>
-        <span>-€{{ discountAmount.toFixed(2) }}</span>
-      </div>
       <div class="total-row" *ngIf="form.fulfillment === 'delivery'">
         <span>Delivery Fee</span>
         <span>€{{ deliveryFee.toFixed(2) }}</span>
@@ -199,6 +195,10 @@
       <div class="total-row tip" *ngIf="tip > 0">
         <span>Tip</span>
         <span>€{{ tip.toFixed(2) }}</span>
+      </div>
+      <div class="total-row discount">
+        <span>Demo</span>
+        <span>-€{{ discountAmount.toFixed(2) }}</span>
       </div>
       <div class="total-row grand-total">
         <span>Total</span>

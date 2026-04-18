@@ -6,7 +6,7 @@
         <div class="pizza-card" (click)="editPizza(pizza)">
           <h3>{{ pizza.name }}</h3>
           <div class="pizza-visual">
-            <app-pizza-visual [toppings]="pizza.toppings" [divisions]="pizza.divisions" [size]="'12'"></app-pizza-visual>
+            <app-pizza-visual [toppings]="pizza.toppings" [divisions]="pizza.divisions" [size]="'12'" [uniformSize]="true"></app-pizza-visual>
           </div>
           <p class="description">{{ pizza.description }}</p>
           <p class="price">{{ pizza.currency }}{{ pizza.price.toFixed(2) }}</p>
@@ -17,7 +17,7 @@
         <div class="pizza-card" (click)="editPizza(pizza)">
           <h3>{{ pizza.name }}</h3>
           <div class="pizza-visual">
-            <app-pizza-visual [toppings]="pizza.toppings" [divisions]="pizza.divisions" [size]="'12'"></app-pizza-visual>
+            <app-pizza-visual [toppings]="pizza.toppings" [divisions]="pizza.divisions" [size]="'12'" [uniformSize]="true"></app-pizza-visual>
           </div>
           <p class="description">{{ pizza.description }}</p>
           <p class="price">{{ pizza.currency }}{{ pizza.price.toFixed(2) }}</p>
@@ -45,7 +45,7 @@
       <button class="popular-card" *ngFor="let pizza of popularPizzas" (click)="editPizza(pizza)">
         <h3>{{ pizza.name }}</h3>
         <div class="popular-visual">
-          <app-pizza-visual [toppings]="pizza.toppings" [divisions]="pizza.divisions" [size]="'12'"></app-pizza-visual>
+          <app-pizza-visual [toppings]="pizza.toppings" [divisions]="pizza.divisions" [size]="'12'" [uniformSize]="true"></app-pizza-visual>
         </div>
         <p class="popular-description">{{ pizza.description }}</p>
         <span class="popular-price">{{ pizza.currency }}{{ pizza.price.toFixed(2) }}</span>

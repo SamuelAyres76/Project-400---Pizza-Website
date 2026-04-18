@@ -8,6 +8,10 @@
   --home-section-gap: 2.5rem;
 }
 
+.home-container {
+  --carousel-scroll-duration: 40s;
+}
+
 /* Carousel */
 .carousel-wrapper {
   overflow: hidden;
@@ -40,10 +44,18 @@
   background: linear-gradient(to left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
 }
 
+:host-context(body.dark-mode) .carousel-wrapper::before {
+  background: linear-gradient(to right, rgba(16, 16, 16, 1) 0%, rgba(16, 16, 16, 0) 100%);
+}
+
+:host-context(body.dark-mode) .carousel-wrapper::after {
+  background: linear-gradient(to left, rgba(16, 16, 16, 1) 0%, rgba(16, 16, 16, 0) 100%);
+}
+
 .carousel-track {
   display: flex;
   gap: 2rem;
-  animation: scroll 40s linear infinite;
+  animation: scroll var(--carousel-scroll-duration, 40s) linear infinite;
 }
 
 @keyframes scroll {
@@ -240,10 +252,36 @@
   font-size: 1.5rem;
 }
 
+:host-context(body.dark-mode) .pizza-card,
+:host-context(body.dark-mode) .popular-card,
+:host-context(body.dark-mode) .action-btn {
+  background: #232323;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+}
+
+:host-context(body.dark-mode) .pizza-card h3,
+:host-context(body.dark-mode) .popular-card h3,
+:host-context(body.dark-mode) .price,
+:host-context(body.dark-mode) .popular-price,
+:host-context(body.dark-mode) .btn-text,
+:host-context(body.dark-mode) .popular-section h2 {
+  color: #f2f2f2;
+}
+
+:host-context(body.dark-mode) .description,
+:host-context(body.dark-mode) .popular-description,
+:host-context(body.dark-mode) .popular-section p {
+  color: #c7c7c7;
+}
+
 /* Mobile responsiveness */
 @media (max-width: 768px) {
   :root {
     --home-section-gap: 1.75rem;
+  }
+
+  .home-container {
+    --carousel-scroll-duration: 24s;
   }
 
   .carousel-item {
@@ -286,6 +324,10 @@
 }
 
 @media (max-width: 480px) {
+  .home-container {
+    --carousel-scroll-duration: 18s;
+  }
+
   .carousel-item {
     width: 200px;
   }

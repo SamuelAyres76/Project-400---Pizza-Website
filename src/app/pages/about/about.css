@@ -419,6 +419,38 @@
     width: 180px;
   }
 
+
+:host-context(body.dark-mode) .hero-section,
+:host-context(body.dark-mode) .stats-section,
+:host-context(body.dark-mode) .carousel-section {
+  background: #1b1b1b;
+}
+
+:host-context(body.dark-mode) .hero-title,
+:host-context(body.dark-mode) .stats-heading,
+:host-context(body.dark-mode) .stats-text p,
+:host-context(body.dark-mode) .stat-number,
+:host-context(body.dark-mode) .stat-label,
+:host-context(body.dark-mode) .carousel-title {
+  color: #f2f2f2;
+}
+
+:host-context(body.dark-mode) .stat-item {
+  border-bottom-color: #4b4b4b;
+}
+
+:host-context(body.dark-mode) .employee-role {
+  background: rgba(28, 28, 28, 0.92);
+  color: #f4f4f4;
+}
+
+:host-context(body.dark-mode) .angled-transition {
+  background: linear-gradient(to bottom right, #1b1b1b 50%, #8f3f3f 51%);
+}
+
+:host-context(body.dark-mode) .history-section {
+  background: linear-gradient(180deg, #8f3f3f 0%, #6e2f2f 85%, #171717 100%);
+}
   .hero-title {
     font-size: 42px;
   }

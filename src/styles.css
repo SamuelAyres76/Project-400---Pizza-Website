@@ -3,15 +3,55 @@
 /* Import Montserrat font from Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
+:root {
+	--bg-top: #ffffff;
+	--bg-bottom: #fafafa;
+	--text-color: #1a1a1a;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	max-width: 100%;
+	overflow-x: hidden;
+}
+
 body {
 	font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 	margin: 0;
 	padding: 0;
-	background: linear-gradient(to bottom, #ffffff 0%, #fafafa 100%);
+	background: linear-gradient(to bottom, var(--bg-top) 0%, var(--bg-bottom) 100%);
+	color: var(--text-color);
+	transition: background 0.3s ease, color 0.3s ease;
 }
 
 main {
 	min-height: calc(100vh - 200px);
 	padding-bottom: 60px;
 	position: relative;
+}
+
+body.dark-mode {
+	--bg-top: #101010;
+	--bg-bottom: #1c1c1c;
+	--text-color: #f2f2f2;
+}
+
+body.dark-mode main {
+	color: #f2f2f2;
+}
+
+body.dark-mode .demo-unavailable {
+	background: linear-gradient(135deg, #171717 0%, #202020 100%);
+}
+
+body.dark-mode .demo-unavailable h1 {
+	color: #f2f2f2;
+}
+
+body.dark-mode .demo-unavailable p {
+	color: #ff9ca3;
 }

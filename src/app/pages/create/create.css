@@ -23,12 +23,16 @@
 }
 
 .progress-bar {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
   align-items: center;
   margin-bottom: 20px;
-  flex-wrap: wrap;
+  width: 100%;
+}
+
+.desktop-progress {
+  display: none;
 }
 
 .step {
@@ -38,6 +42,10 @@
   color: #374151;
   font-weight: 700;
   font-size: 13px;
+  white-space: nowrap;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .step.active {
@@ -46,17 +54,15 @@
 }
 
 .step:not(:last-child)::after {
-  content: '->';
-  margin-left: 10px;
-  color: #9ca3af;
+  content: none;
 }
 
 .pizza-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px 0;
-  min-height: 250px;
+  padding: 14px 0;
+  min-height: 200px;
 }
 
 .pizza-spin {
@@ -64,8 +70,8 @@
 }
 
 .pizza-bounce {
-  width: 200px;
-  height: 200px;
+  width: 160px;
+  height: 160px;
 }
 
 .pizza-bounce.bounce {
@@ -74,8 +80,8 @@
 
 .pizza {
   position: relative;
-  width: 200px;
-  height: 200px;
+  width: 160px;
+  height: 160px;
 }
 
 @keyframes spin {
@@ -206,6 +212,11 @@
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 12px;
   max-width: 600px;
+}
+
+.single-row-options {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  max-width: 900px;
 }
 
 .option-button,
@@ -400,18 +411,6 @@
   outline-offset: 1px;
 }
 
-.sticky-order-bar {
-  position: sticky;
-  bottom: 0;
-  background: rgba(255, 255, 255, 0.96);
-  border-top: 1px solid #e5e7eb;
-  box-shadow: 0 -6px 16px rgba(0, 0, 0, 0.08);
-  border-radius: 12px 12px 0 0;
-  padding: 12px;
-  margin: 30px -12px 0;
-  backdrop-filter: blur(2px);
-}
-
 .price-summary {
   background: #f9fafb;
   border: 1px solid #e5e7eb;
@@ -528,18 +527,21 @@ input:focus-visible,
     display: block;
   }
 
+  .desktop-progress {
+    display: flex;
+  }
+
   .create-layout {
     display: grid;
-    grid-template-columns: minmax(200px, 250px) minmax(0, 1fr) minmax(260px, 320px);
+    grid-template-columns: minmax(200px, 250px) minmax(0, 1fr);
     gap: 32px;
     align-items: start;
-    max-width: 1600px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 24px;
   }
 
-  .desktop-pizza-panel,
-  .desktop-checkout-panel {
+  .desktop-pizza-panel {
     align-self: start;
     height: 100%;
   }
@@ -590,19 +592,120 @@ input:focus-visible,
     height: clamp(165px, 13vw, 215px);
   }
 
-  .desktop-checkout-sticky {
-    position: sticky;
-    top: calc(100vh - 260px);
-    border: 1px solid #e5e7eb;
-    border-radius: 16px;
-    padding: 12px;
-    background: rgba(255, 255, 255, 0.96);
-    box-shadow: 0 12px 28px rgba(17, 24, 39, 0.12);
-    backdrop-filter: blur(2px);
-    margin-top: auto;
+}
+
+@media (max-width: 420px) {
+  .progress-bar {
+    gap: 5px;
   }
 
-  .desktop-checkout-sticky .price-summary {
-    margin-bottom: 12px;
+  .step {
+    padding: 6px 6px;
+    font-size: 10px;
   }
+
+  .mobile-top-stack {
+    padding: 14px 12px;
+  }
+
+  .pizza-container {
+    min-height: 165px;
+    padding: 10px 0;
+  }
+
+  .mobile-top-stack .pizza-bounce,
+  .mobile-top-stack .pizza {
+    width: 136px;
+    height: 136px;
+  }
+
+  .single-row-options {
+    gap: 8px;
+  }
+
+  .single-row-options .option-button {
+    padding: 12px 8px;
+    font-size: 12px;
+  }
+}
+
+:host-context(body.dark-mode) .mobile-top-stack {
+  background: #181818;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+:host-context(body.dark-mode) .step {
+  background: #2c2c2c;
+  color: #d7d7d7;
+}
+
+:host-context(body.dark-mode) .content h1,
+:host-context(body.dark-mode) .selection-section h2,
+:host-context(body.dark-mode) .counter-value,
+:host-context(body.dark-mode) .price-row span:last-child {
+  color: #f3f3f3;
+}
+
+:host-context(body.dark-mode) .page-helper,
+:host-context(body.dark-mode) .note,
+:host-context(body.dark-mode) .price-row {
+  color: #cbcbcb;
+}
+
+:host-context(body.dark-mode) .option-button,
+:host-context(body.dark-mode) .divide-button,
+:host-context(body.dark-mode) .topping-item,
+:host-context(body.dark-mode) .counter-btn,
+:host-context(body.dark-mode) .pizza-name-input,
+:host-context(body.dark-mode) .desktop-pizza-square,
+:host-context(body.dark-mode) .price-summary {
+  background: #242424;
+  color: #ededed;
+  border-color: #3f3f3f;
+}
+
+:host-context(body.dark-mode) .topping-label,
+:host-context(body.dark-mode) .option-button,
+:host-context(body.dark-mode) .divide-button {
+  color: #ededed;
+}
+
+:host-context(body.dark-mode) .option-button.selected,
+:host-context(body.dark-mode) .divide-button.selected {
+  background: #23924b;
+  border-color: #23924b;
+  color: #ffffff;
+  box-shadow: 0 0 0 1px rgba(35, 146, 75, 0.35), 0 8px 16px rgba(35, 146, 75, 0.28);
+}
+
+:host-context(body.dark-mode) .option-button.selected .price,
+:host-context(body.dark-mode) .option-button.selected .size-label {
+  color: #ffffff;
+}
+
+:host-context(body.dark-mode) .half-section {
+  background: rgba(28, 28, 28, 0.95);
+  border-color: #3f3f3f;
+}
+
+:host-context(body.dark-mode) .toppings-info {
+  background: #2d2520;
+  border-color: #9a5b2a;
+}
+
+:host-context(body.dark-mode) .toppings-info p {
+  color: #e8dfd7;
+}
+
+:host-context(body.dark-mode) .toppings-info strong,
+:host-context(body.dark-mode) .extra-cost {
+  color: #ffb27a;
+}
+
+:host-context(body.dark-mode) .price-row {
+  border-bottom-color: #3f3f3f;
+}
+
+:host-context(body.dark-mode) .price-row.total {
+  border-top-color: #ebebeb;
 }

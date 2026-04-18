@@ -79,10 +79,11 @@ export class CheckoutComponent implements OnInit {
     this.subtotal = this.basketService.getTotalPrice();
     this.tip = this.form.tip;
     this.deliveryFee = this.form.fulfillment === 'delivery' ? this.DELIVERY_FEE : 0;
-    
-    // 100% off usability test discount
-    this.discountAmount = this.subtotal;
-    this.total = this.subtotal - this.discountAmount + this.deliveryFee + this.tip;
+
+    // Demo mode: discount is applied after all charges so total is always zero.
+    const preDiscountTotal = this.subtotal + this.deliveryFee + this.tip;
+    this.discountAmount = preDiscountTotal;
+    this.total = preDiscountTotal - this.discountAmount;
   }
 
   setFulfillment(type: 'pickup' | 'delivery') {

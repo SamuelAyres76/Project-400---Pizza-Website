@@ -2,4 +2,24 @@
 <main>
   <router-outlet></router-outlet>
 </main>
+
+<a *ngIf="!isCheckoutRoute" class="floating-checkout desktop" href="/checkout" (click)="goToCheckout($event)" aria-label="Go to checkout">
+  <section class="price-summary">
+    <div class="price-row">
+      <span>{{ basketCount }} pizza{{ basketCount !== 1 ? 's' : '' }}</span>
+      <span>€{{ basketTotal.toFixed(2) }}</span>
+    </div>
+    <div class="price-row total">
+      <span>Total</span>
+      <span>€{{ basketTotal.toFixed(2) }}</span>
+    </div>
+  </section>
+  <span class="continue-button">{{ isCheckoutRoute ? 'Checkout' : 'Go to Checkout' }}</span>
+</a>
+
+<a *ngIf="!isCheckoutRoute" class="floating-checkout-mobile" href="/checkout" (click)="goToCheckout($event)" aria-label="Open checkout">
+  <img src="assets/images/sidebar/trolley.png" alt="Checkout" class="trolley-icon" />
+  <span class="mobile-badge" *ngIf="basketCount > 0">{{ basketCount }}</span>
+</a>
+
 <app-footer></app-footer>

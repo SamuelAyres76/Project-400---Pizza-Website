@@ -37,15 +37,16 @@
 /* Main Content */
 .content {
   padding: 2rem;
-  max-width: 1000px;
+  max-width: 1060px;
   margin: 0 auto;
 }
 
 .content h1 {
-  font-size: 28px;
+  font-size: clamp(1.9rem, 3vw, 2.4rem);
   font-weight: 700;
-  margin: 0 0 0.5rem 0;
-  color: #333;
+  margin: 0 0 0.35rem 0;
+  color: #1f2933;
+  letter-spacing: -0.02em;
 }
 
 .page-purpose,
@@ -56,6 +57,7 @@
 
 .page-helper {
   font-weight: 700;
+  margin-bottom: 1.25rem;
 }
 
 .predictability-notes {
@@ -77,10 +79,10 @@
 }
 
 .basket-section h2 {
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 1.35rem;
+  font-weight: 700;
   margin-bottom: 0;
-  color: #333;
+  color: #1f2933;
 }
 
 .basket-headline-row {
@@ -133,11 +135,19 @@
 
 .basket-item {
   background: white;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  border: 1px solid #f0e7e7;
+  border-radius: 14px;
   padding: 1.5rem;
   display: flex;
   gap: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.2s ease;
+}
+
+.basket-item:hover {
+  transform: translateY(-4px);
+  border-color: #f2c9ce;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
 }
 
 .item-left {
@@ -150,6 +160,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.pizza-visual app-pizza-visual {
+  --pizza-visual-size: 132px;
 }
 
 .pizza-icon {
@@ -171,25 +185,26 @@
 
 .item-details h3 {
   margin: 0 0 0.5rem 0;
-  font-size: 1.25rem;
+  font-size: 1.18rem;
+  font-weight: 700;
   color: #333;
 }
 
 .size-sauce {
   color: #999;
-  font-size: 0.875rem;
+  font-size: 0.9rem;
   margin: 0 0 0.5rem 0;
 }
 
 .toppings {
   color: #666;
-  font-size: 0.875rem;
+  font-size: 0.93rem;
   margin: 0 0 1rem 0;
-  line-height: 1.4;
+  line-height: 1.45;
 }
 
 .item-details .price {
-  font-size: 1.25rem;
+  font-size: 1.33rem;
   font-weight: 700;
   color: #333;
   margin: 0.5rem 0 1rem 0;
@@ -199,10 +214,12 @@
   background: #ffffff;
   color: #1f2937;
   border: 2px solid #b23a48;
-  padding: 0.55rem 1rem;
-  border-radius: 6px;
+  padding: 0.65rem 1.15rem;
+  border-radius: 10px;
   cursor: pointer;
   font-weight: 700;
+  font-size: 0.92rem;
+  letter-spacing: 0.01em;
   min-height: 44px;
   align-self: flex-start;
   transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
@@ -233,20 +250,23 @@
 /* Details Section */
 .details-section {
   margin-bottom: 3rem;
-  background: #f8f9fa;
+  background: #ffffff;
+  border: 1px solid #f0e7e7;
   padding: 2rem;
-  border-radius: 8px;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .details-section h2 {
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 1.35rem;
+  font-weight: 700;
   margin: 0 0 1.5rem 0;
-  color: #333;
+  color: #1f2933;
 }
 
 .form-group {
   margin-bottom: 1.5rem;
+  min-width: 0;
 }
 
 .form-group label {
@@ -260,12 +280,16 @@
 .form-input,
 .form-textarea {
   width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   padding: 0.75rem 1rem;
   border: 1px solid #ddd;
-  border-radius: 6px;
+  border-radius: 10px;
   font-size: 1rem;
   font-family: inherit;
   transition: border-color 0.2s ease;
+  background: #ffffff;
+  color: #1f2937;
 }
 
 .form-input:focus,
@@ -288,13 +312,14 @@
 .tip-button {
   padding: 1rem;
   border: 2px solid #e0e0e0;
-  border-radius: 8px;
+  border-radius: 10px;
   background: white;
   color: #333;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.2s ease;
+  min-width: 0;
 }
 
 .tip-button:hover {
@@ -311,17 +336,18 @@
 /* Delivery Section */
 .delivery-section {
   background: white;
-  border: 1px solid #e0e0e0;
+  border: 1px solid #f0e7e7;
   padding: 2rem;
-  border-radius: 8px;
+  border-radius: 14px;
   margin-bottom: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .delivery-section h2 {
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 1.35rem;
+  font-weight: 700;
   margin-bottom: 1.5rem;
-  color: #333;
+  color: #1f2933;
 }
 
 .fulfillment-toggle {
@@ -334,13 +360,14 @@
 .toggle-button {
   padding: 1rem;
   border: 2px solid #e0e0e0;
-  border-radius: 8px;
+  border-radius: 10px;
   background: white;
   color: #333;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.2s ease;
+  min-width: 0;
 }
 
 .toggle-button:hover {
@@ -356,8 +383,8 @@
 
 .payment-section {
   background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
+  border: 1px solid #e6edf5;
+  border-radius: 14px;
   padding: 1.25rem;
   margin-bottom: 2rem;
 }
@@ -378,25 +405,31 @@
 }
 
 .address-form {
-  background: #f9f9f9;
+  background: #fffdfd;
   padding: 1.5rem;
-  border-radius: 6px;
-  border: 1px solid #f0f0f0;
+  border-radius: 10px;
+  border: 1px solid #f0e7e7;
 }
 
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
+  align-items: start;
+}
+
+.form-row > .form-group {
+  min-width: 0;
 }
 
 /* Total Section */
 .total-section {
   background: white;
-  border: 2px solid #f0f0f0;
+  border: 1px solid #f0e7e7;
   padding: 2rem;
-  border-radius: 8px;
+  border-radius: 14px;
   margin-bottom: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .total-row {
@@ -434,7 +467,7 @@
   color: white;
   border: 2px solid #b91c1c;
   padding: 1rem 1.25rem;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 1.1rem;
   font-weight: 700;
   min-height: 48px;
@@ -534,7 +567,7 @@ textarea:focus-visible {
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
   .content {
-    padding: 1.5rem;
+    padding: 1.2rem 0.9rem;
   }
 
   .basket-headline-row {
@@ -552,7 +585,134 @@ textarea:focus-visible {
     height: 100px;
   }
 
+  .pizza-visual app-pizza-visual {
+    --pizza-visual-size: 96px;
+  }
+
   .total-section {
     padding: 1.5rem;
   }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .tip-buttons {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .fulfillment-toggle {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 420px) {
+  .tip-buttons {
+    grid-template-columns: 1fr;
+  }
+}
+
+:host-context(body.dark-mode) .step {
+  background: #2c2c2c;
+  color: #d7d7d7;
+}
+
+:host-context(body.dark-mode) .step:not(:last-child)::after {
+  color: #b0b0b0;
+}
+
+:host-context(body.dark-mode) .content h1,
+:host-context(body.dark-mode) .basket-section h2,
+:host-context(body.dark-mode) .details-section h2,
+:host-context(body.dark-mode) .delivery-section h2,
+:host-context(body.dark-mode) .total-row,
+:host-context(body.dark-mode) .item-details h3,
+:host-context(body.dark-mode) .item-details .price,
+:host-context(body.dark-mode) .form-group label {
+  color: #f2f2f2;
+}
+
+:host-context(body.dark-mode) .page-purpose,
+:host-context(body.dark-mode) .page-helper,
+:host-context(body.dark-mode) .toppings,
+:host-context(body.dark-mode) .size-sauce,
+:host-context(body.dark-mode) .timestamp,
+:host-context(body.dark-mode) .payment-card p,
+:host-context(body.dark-mode) .empty-state p {
+  color: #c9c9c9;
+}
+
+:host-context(body.dark-mode) .predictability-notes {
+  background: #1f2432;
+  border-left-color: #6da2ff;
+}
+
+:host-context(body.dark-mode) .predictability-notes p {
+  color: #dbe8ff;
+}
+
+:host-context(body.dark-mode) .basket-item,
+:host-context(body.dark-mode) .delivery-section,
+:host-context(body.dark-mode) .total-section,
+:host-context(body.dark-mode) .payment-card,
+:host-context(body.dark-mode) .tip-button,
+:host-context(body.dark-mode) .toggle-button,
+:host-context(body.dark-mode) .clear-btn,
+:host-context(body.dark-mode) .secondary-btn,
+:host-context(body.dark-mode) .form-input,
+:host-context(body.dark-mode) .form-textarea,
+:host-context(body.dark-mode) .address-form {
+  background: #242424;
+  color: #efefef;
+  border-color: #3f3f3f;
+}
+
+:host-context(body.dark-mode) .basket-item:hover {
+  border-color: #8a4e55;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.5);
+}
+
+:host-context(body.dark-mode) .tip-button.active,
+:host-context(body.dark-mode) .toggle-button.active {
+  background: #ff5964;
+  border-color: #ff5964;
+  color: #ffffff;
+}
+
+:host-context(body.dark-mode) .pizza-icon {
+  background: #1f1f1f;
+}
+
+:host-context(body.dark-mode) .details-section,
+:host-context(body.dark-mode) .payment-section,
+:host-context(body.dark-mode) .empty-state {
+  background: #1d1d1d;
+  border-color: #3f3f3f;
+}
+
+:host-context(body.dark-mode) .tip-button:hover,
+:host-context(body.dark-mode) .toggle-button:hover {
+  background: #38272a;
+  border-color: #e5828b;
+}
+
+:host-context(body.dark-mode) .total-row.grand-total {
+  border-top-color: #4a4a4a;
+}
+
+:host-context(body.dark-mode) .total-row.discount {
+  color: #7ee3a0;
+}
+
+:host-context(body.dark-mode) .total-row.tip {
+  color: #ffa0a8;
+}
+
+:host-context(body.dark-mode) .clear-confirm {
+  background: #31261b;
+  border-color: #b67c45;
+}
+
+:host-context(body.dark-mode) .clear-confirm p {
+  color: #ffd7b3;
 }

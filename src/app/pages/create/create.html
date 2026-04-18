@@ -1,9 +1,9 @@
 <div class="create-container">
   <div class="mobile-top-stack">
     <div class="progress-bar">
-      <span class="step active">Step 1: Build pizza</span>
-      <span class="step">Step 2: Review cart</span>
-      <span class="step">Step 3: Checkout</span>
+      <span class="step active">Build</span>
+      <span class="step">Review</span>
+      <span class="step">Checkout</span>
     </div>
 
     <div class="pizza-container">
@@ -134,9 +134,9 @@
 
     <div class="content">
       <div class="progress-bar desktop-progress">
-        <span class="step active">Step 1: Build pizza</span>
-        <span class="step">Step 2: Review cart</span>
-        <span class="step">Step 3: Checkout</span>
+        <span class="step active">Build</span>
+        <span class="step">Review</span>
+        <span class="step">Checkout</span>
       </div>
 
       <h1>Create your Pizza</h1>
@@ -145,7 +145,7 @@
     <!-- Size Section -->
     <section class="selection-section">
       <h2>1. Select the Size - <span class="note">select one</span></h2>
-      <div class="options-grid">
+      <div class="options-grid single-row-options">
         <button *ngFor="let size of sizes"
                 class="option-button"
                 [class.selected]="pizza.size === size.value"
@@ -159,7 +159,7 @@
     <!-- Sauce Section -->
     <section class="selection-section">
       <h2>2. Select the Sauce - <span class="note">select one</span></h2>
-      <div class="options-grid">
+      <div class="options-grid single-row-options">
         <button *ngFor="let sauce of sauces"
                 class="option-button"
                 [class.selected]="pizza.sauce === sauce.value"
@@ -172,7 +172,7 @@
     <!-- Cheese Section -->
     <section class="selection-section">
       <h2>3. Select the Cheese - <span class="note">select one</span></h2>
-      <div class="options-grid">
+      <div class="options-grid single-row-options">
         <button *ngFor="let cheese of cheeses"
                 class="option-button"
                 [class.selected]="pizza.cheese === cheese.value"
@@ -288,51 +288,6 @@
              class="pizza-name-input">
     </section>
 
-      <div class="sticky-order-bar mobile-order-bar">
-      <!-- Price Summary -->
-      <section class="price-summary">
-        <div class="price-row">
-          <span>{{ pizza.size }}" Pizza</span>
-          <span>€{{ getSizePrice().toFixed(2) }}</span>
-        </div>
-        <div class="price-row" *ngIf="getToppingsCost() > 0">
-          <span>Additional Toppings</span>
-          <span>€{{ getToppingsCost().toFixed(2) }}</span>
-        </div>
-        <div class="price-row total">
-          <span>Total</span>
-          <span>€{{ getTotalPrice().toFixed(2) }}</span>
-        </div>
-      </section>
-
-      <!-- Continue Button -->
-      <button class="continue-button" (click)="addToBasket()">
-        Add to Basket
-      </button>
-      </div>
     </div>
-
-    <aside class="desktop-checkout-panel" aria-label="Order summary">
-      <div class="desktop-checkout-sticky">
-        <section class="price-summary">
-          <div class="price-row">
-            <span>{{ pizza.size }}" Pizza</span>
-            <span>€{{ getSizePrice().toFixed(2) }}</span>
-          </div>
-          <div class="price-row" *ngIf="getToppingsCost() > 0">
-            <span>Additional Toppings</span>
-            <span>€{{ getToppingsCost().toFixed(2) }}</span>
-          </div>
-          <div class="price-row total">
-            <span>Total</span>
-            <span>€{{ getTotalPrice().toFixed(2) }}</span>
-          </div>
-        </section>
-
-        <button class="continue-button" (click)="addToBasket()">
-          Add to Basket
-        </button>
-      </div>
-    </aside>
   </div>
 </div>

@@ -230,6 +230,6 @@ export class CreateComponent implements OnInit {
     };
 
     this.basketService.addItem(basketItem);
-    this.router.navigate(['/checkout']);
+    this.router.navigate(['/']);
   }
 }

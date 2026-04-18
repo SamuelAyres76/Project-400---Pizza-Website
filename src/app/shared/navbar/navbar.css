@@ -316,3 +316,96 @@
 
 .menu-btn:focus{ outline: 3px solid rgba(243,108,108,0.12); }
 .nav-item:focus{ outline: 3px solid rgba(255,255,255,0.3); outline-offset: 2px; }
+
+.theme-btn {
+  position: fixed;
+  right: 86px;
+  top: 20px;
+  border: 0;
+  border-radius: 999px;
+  background: #f36c6c;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 10px 14px;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(243, 108, 108, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  z-index: 10003;
+}
+
+.theme-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(243, 108, 108, 0.35);
+}
+
+.theme-btn:focus {
+  outline: 3px solid rgba(243, 108, 108, 0.3);
+  outline-offset: 2px;
+}
+
+@media (max-width: 720px) {
+  .theme-btn {
+    right: 76px;
+    top: 18px;
+    padding: 9px 12px;
+    font-size: 12px;
+  }
+}
+
+:host-context(body.dark-mode) .navbar {
+  background: #121212;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+}
+
+:host-context(body.dark-mode) .menu-btn {
+  background: #1d1d1d;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.5);
+}
+
+:host-context(body.dark-mode) .menu-btn .bars i {
+  background: #ff8a8a;
+}
+
+:host-context(body.dark-mode) .theme-btn {
+  background: #2a2a2a;
+  color: #ffe6e6;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
+}
+
+:host-context(body.dark-mode) .theme-btn:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.55);
+}
+
+:host-context(body.dark-mode) .panel {
+  background: #2b1f1f;
+}
+
+:host-context(body.dark-mode) .nav-item,
+:host-context(body.dark-mode) .action-btn {
+  background: #1e1e1e;
+}
+
+:host-context(body.dark-mode) .nav-item.active {
+  background: #342727;
+}
+
+:host-context(body.dark-mode) .nav-label,
+:host-context(body.dark-mode) .auth-btn,
+:host-context(body.dark-mode) .checkout-btn,
+:host-context(body.dark-mode) .btn-amount {
+  color: #ff9c9c;
+}
+
+:host-context(body.dark-mode) .btn-label {
+  color: #f4f4f4;
+}
+
+:host-context(body.dark-mode) .item-count,
+:host-context(body.dark-mode) .auth-btn::after {
+  color: #d1d1d1;
+}
+
+:host-context(body.dark-mode) .btn-details {
+  border-top-color: rgba(255, 255, 255, 0.22);
+}
