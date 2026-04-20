@@ -10,12 +10,6 @@ interface CheckoutForm {
   fullName: string;
   orderNotes: string;
   tip: number;
-  fulfillment: 'pickup' | 'delivery';
-  addressLine1: string;
-  addressLine2: string;
-  addressLine3: string;
-  city: string;
-  postalCode: string;
 }
 
 @Component({
@@ -31,22 +25,14 @@ export class CheckoutComponent implements OnInit {
     fullName: '',
     orderNotes: '',
     tip: 0,
-    fulfillment: 'pickup',
-    addressLine1: '',
-    addressLine2: '',
-    addressLine3: '',
-    city: '',
-    postalCode: '',
   };
 
   subtotal = 0;
   tip = 0;
   discountAmount = 0;
-  deliveryFee = 0;
   total = 0;
   selectedTip: number | null = null;
   tipOptions = [0, 1, 2, 5];
-  readonly DELIVERY_FEE = 2.50;
   showClearConfirmation = false;
   canConfirmClear = false;
   clearCountdown = 3;
@@ -78,17 +64,11 @@ export class CheckoutComponent implements OnInit {
   calculateTotals() {
     this.subtotal = this.basketService.getTotalPrice();
     this.tip = this.form.tip;
-    this.deliveryFee = this.form.fulfillment === 'delivery' ? this.DELIVERY_FEE : 0;
 
     // Demo mode: discount is applied after all charges so total is always zero.
-    const preDiscountTotal = this.subtotal + this.deliveryFee + this.tip;
+    const preDiscountTotal = this.subtotal + this.tip;
     this.discountAmount = preDiscountTotal;
     this.total = preDiscountTotal - this.discountAmount;
-  }
-
-  setFulfillment(type: 'pickup' | 'delivery') {
-    this.form.fulfillment = type;
-    this.calculateTotals();
   }
 
   selectTip(amount: number) {
@@ -212,11 +192,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   canShowPaymentDetails(): boolean {
-    if (this.form.fulfillment === 'pickup') {
-      return true;
-    }
-
-    return !!this.form.addressLine1.trim() && !!this.form.city.trim() && !!this.form.postalCode.trim();
+    return true;
   }
 
   getSizeLabel(size: string): string {
@@ -255,7 +231,7 @@ export class CheckoutComponent implements OnInit {
     }
 
     if (!this.canShowPaymentDetails()) {
-      alert('Complete delivery details before payment.');
+      alert('Complete payment details before payment.');
       return;
     }
 
@@ -264,28 +240,15 @@ export class CheckoutComponent implements OnInit {
       return;
     }
 
-    if (this.form.fulfillment === 'delivery') {
-      if (!this.form.addressLine1.trim() || !this.form.city.trim() || !this.form.postalCode.trim()) {
-        alert('Please fill in all required address fields');
-        return;
-      }
-    }
-
     this.orderService.createOrder(
       this.form.fullName,
       this.form.orderNotes,
-      this.form.fulfillment,
-      {
-        line1: this.form.addressLine1,
-        line2: this.form.addressLine2,
-        line3: this.form.addressLine3,
-        city: this.form.city,
-        postalCode: this.form.postalCode
-      },
+      'pickup',
+      {},
       this.basketItems,
       this.subtotal,
       this.discountAmount,
-      this.deliveryFee,
+      0,
       this.form.tip,
       this.total
     );

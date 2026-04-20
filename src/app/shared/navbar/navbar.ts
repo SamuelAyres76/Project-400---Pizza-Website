@@ -42,12 +42,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.applyMenuState();
   }
 
-  logout() {
-    // Implement logout logic here
-    console.log('Logout clicked');
-    this.closeMenu();
-  }
-
   toggleTheme() {
     this.isDarkMode = !this.isDarkMode;
     this.applyTheme();

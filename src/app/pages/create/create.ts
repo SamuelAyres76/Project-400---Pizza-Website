@@ -9,7 +9,6 @@ interface PizzaState {
   sauce: string;
   cheese: string;
   divided: boolean;
-  name: string;
   toppingsHalf1: { [key: string]: number };
   toppingsHalf2: { [key: string]: number };
 }
@@ -33,7 +32,6 @@ export class CreateComponent implements OnInit {
     sauce: 'margharita',
     cheese: 'mozzarella',
     divided: false,
-    name: '',
     toppingsHalf1: {
       pepperoni: 0,
       bacon: 0,
@@ -94,7 +92,6 @@ export class CreateComponent implements OnInit {
     const state = window.history.state;
     if (state && state.preset) {
       const preset = state.preset;
-      this.pizza.name = preset.name;
       // Set toppings from preset
       if (preset.toppings && Array.isArray(preset.toppings)) {
         preset.toppings.forEach((topping: any) => {
@@ -216,7 +213,7 @@ export class CreateComponent implements OnInit {
   addToBasket() {
     const basketItem = {
       id: this.basketService.generateItemId(),
-      name: this.pizza.name || 'Custom Pizza',
+      name: 'Custom Pizza',
       size: this.pizza.size,
       sauce: this.pizza.sauce,
       cheese: this.pizza.cheese,
@@ -230,6 +227,6 @@ export class CreateComponent implements OnInit {
     };
 
     this.basketService.addItem(basketItem);
-    this.router.navigate(['/']);
+    this.router.navigate(['/checkout']);
   }
 }

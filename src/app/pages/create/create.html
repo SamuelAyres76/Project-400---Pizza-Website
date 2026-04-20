@@ -140,7 +140,7 @@
       </div>
 
       <h1>Create your Pizza</h1>
-      <p class="page-helper">Start by selecting size.</p>
+      <p class="page-helper">Use the buttons to make your pizza!</p>
 
     <!-- Size Section -->
     <section class="selection-section">
@@ -222,7 +222,6 @@
 
       <!-- Single Pizza or First Half -->
       <div *ngIf="!pizza.divided">
-        <h3 class="half-title">Whole Pizza</h3>
         <div class="toppings-grid">
           <div *ngFor="let topping of allToppings" class="topping-item">
             <span class="topping-label">{{ topping.label }}</span>
@@ -279,13 +278,27 @@
       </div>
     </section>
 
-    <!-- Pizza Name Section -->
+    <!-- Basket / Checkout Actions -->
     <section class="selection-section">
-      <h2>Pizza Name <span class="note">optional</span></h2>
-      <input type="text" 
-             [(ngModel)]="pizza.name"
-             placeholder="Enter a name for your pizza..."
-             class="pizza-name-input">
+      <h2>6. Add to Basket</h2>
+      <div class="price-summary">
+        <div class="price-row">
+          <span>Base price</span>
+          <span>€{{ getSizePrice().toFixed(2) }}</span>
+        </div>
+        <div class="price-row">
+          <span>Extra toppings</span>
+          <span>€{{ getToppingsCost().toFixed(2) }}</span>
+        </div>
+        <div class="price-row total">
+          <span>Total</span>
+          <span>€{{ getTotalPrice().toFixed(2) }}</span>
+        </div>
+      </div>
+
+      <button class="continue-button" (click)="addToBasket()">
+        Add to Basket
+      </button>
     </section>
 
     </div>

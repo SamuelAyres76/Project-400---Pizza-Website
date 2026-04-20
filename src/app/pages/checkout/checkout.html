@@ -106,79 +106,10 @@
       </div>
     </section>
 
-    <!-- Delivery Options -->
-    <section class="delivery-section">
-      <h2>Pickup or Delivery?</h2>
-      
-      <div class="fulfillment-toggle">
-        <button 
-          class="toggle-button"
-          [class.active]="form.fulfillment === 'pickup'"
-          (click)="setFulfillment('pickup')">
-          📍 Pickup
-        </button>
-        <button 
-          class="toggle-button"
-          [class.active]="form.fulfillment === 'delivery'"
-          (click)="setFulfillment('delivery')">
-          🚗 Delivery
-        </button>
-      </div>
-
-      <div *ngIf="form.fulfillment === 'delivery'" class="address-form">
-        <div class="form-group">
-          <label>Address Line 1</label>
-          <input 
-            type="text" 
-            [(ngModel)]="form.addressLine1"
-            placeholder="Street address"
-            class="form-input">
-        </div>
-
-        <div class="form-group">
-          <label>Address Line 2</label>
-          <input 
-            type="text" 
-            [(ngModel)]="form.addressLine2"
-            placeholder="Apartment, suite, etc. (optional)"
-            class="form-input">
-        </div>
-
-        <div class="form-group">
-          <label>Address Line 3</label>
-          <input 
-            type="text" 
-            [(ngModel)]="form.addressLine3"
-            placeholder="Additional info (optional)"
-            class="form-input">
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label>City</label>
-            <input 
-              type="text" 
-              [(ngModel)]="form.city"
-              placeholder="Enter city"
-              class="form-input">
-          </div>
-
-          <div class="form-group">
-            <label>Postal Code</label>
-            <input 
-              type="text" 
-              [(ngModel)]="form.postalCode"
-              placeholder="Enter postal code"
-              class="form-input">
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section class="payment-section" *ngIf="canShowPaymentDetails()">
       <h2>Payment Details</h2>
       <div class="payment-card">
-        <p>TBD</p>
+        <p>Don't worry about it! All pizza's are free!</p>
       </div>
     </section>
 
@@ -188,16 +119,12 @@
         <span>Subtotal</span>
         <span>€{{ subtotal.toFixed(2) }}</span>
       </div>
-      <div class="total-row" *ngIf="form.fulfillment === 'delivery'">
-        <span>Delivery Fee</span>
-        <span>€{{ deliveryFee.toFixed(2) }}</span>
-      </div>
       <div class="total-row tip" *ngIf="tip > 0">
         <span>Tip</span>
         <span>€{{ tip.toFixed(2) }}</span>
       </div>
       <div class="total-row discount">
-        <span>Demo</span>
+        <span>Free Weekend (good for business)</span>
         <span>-€{{ discountAmount.toFixed(2) }}</span>
       </div>
       <div class="total-row grand-total">
