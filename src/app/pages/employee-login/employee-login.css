@@ -1,0 +1,100 @@
+.employee-login-page {
+  min-height: calc(100vh - 220px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.12);
+  padding: 28px;
+  border: 1px solid rgba(239, 115, 115, 0.2);
+}
+
+.login-card h1 {
+  margin: 0;
+  color: #ef7373;
+  font-size: 30px;
+}
+
+.login-card p {
+  margin: 8px 0 20px;
+  color: #555;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+label {
+  font-weight: 700;
+  color: #303030;
+}
+
+input {
+  border: 1px solid #d9d9d9;
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 16px;
+}
+
+input:focus {
+  outline: none;
+  border-color: #ef7373;
+  box-shadow: 0 0 0 3px rgba(239, 115, 115, 0.15);
+}
+
+button {
+  margin-top: 12px;
+  border: none;
+  border-radius: 12px;
+  background: #ef7373;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 12px 14px;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.error-message {
+  margin-top: 8px;
+  color: #b72f2f;
+  font-weight: 600;
+}
+
+:host-context(body.dark-mode) .login-card {
+  background: #1f1f1f;
+  border-color: rgba(255, 156, 156, 0.25);
+}
+
+:host-context(body.dark-mode) .login-card h1 {
+  color: #ff9c9c;
+}
+
+:host-context(body.dark-mode) .login-card p,
+:host-context(body.dark-mode) label {
+  color: #f0f0f0;
+}
+
+:host-context(body.dark-mode) input {
+  background: #121212;
+  color: #fff;
+  border-color: #3f3f3f;
+}
+
+:host-context(body.dark-mode) button {
+  background: #ff8f8f;
+  color: #2b1f1f;
+}

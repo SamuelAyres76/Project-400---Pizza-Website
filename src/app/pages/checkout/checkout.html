@@ -134,7 +134,10 @@
     </section>
 
     <!-- Buy Button -->
-    <button class="buy-btn" [disabled]="basketItems.length === 0" (click)="submitOrder()">Buy Now</button>
+    <button class="buy-btn" [disabled]="basketItems.length === 0 || isSubmitting" (click)="submitOrder()">
+      {{ isSubmitting ? 'Placing Order...' : 'Buy Now' }}
+    </button>
+    <p class="submit-error" *ngIf="submitError">{{ submitError }}</p>
   </div>
 
   <div class="undo-toast" *ngIf="undoToastVisible" role="status" aria-live="polite">

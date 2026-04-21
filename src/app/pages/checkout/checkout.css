@@ -491,6 +491,13 @@
   box-shadow: none;
 }
 
+.submit-error {
+  margin: 0.85rem 0 0;
+  text-align: center;
+  color: #b91c1c;
+  font-weight: 700;
+}
+
 .confirm-clear-btn {
   background: #991b1b;
   border: 2px solid #991b1b;
@@ -640,6 +647,10 @@ textarea:focus-visible {
 :host-context(body.dark-mode) .payment-card p,
 :host-context(body.dark-mode) .empty-state p {
   color: #c9c9c9;
+}
+
+:host-context(body.dark-mode) .submit-error {
+  color: #ffa0a8;
 }
 
 :host-context(body.dark-mode) .predictability-notes {

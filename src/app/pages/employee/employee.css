@@ -1,24 +1,289 @@
-.demo-unavailable {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.employee-page {
   min-height: 100vh;
   padding: 2rem;
-  text-align: center;
   background: linear-gradient(135deg, #fff9f7 0%, #fff5f2 100%);
 }
 
-.demo-unavailable h1 {
-  font-size: 32px;
-  font-weight: 700;
-  margin: 0 0 1rem 0;
-  color: #333;
+.employee-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
-.demo-unavailable p {
-  font-size: 18px;
-  color: #FF5964;
-  font-weight: 600;
+.employee-head h1 {
   margin: 0;
+  font-size: 30px;
+  color: #2f2f2f;
+}
+
+.countdown-text {
+  margin: 0.35rem 0 0;
+  color: #7a7a7a;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.refresh-btn {
+  border: 2px solid #ef7373;
+  background: #fff;
+  color: #b54242;
+  border-radius: 999px;
+  font-weight: 700;
+  padding: 0.45rem 1rem;
+  cursor: pointer;
+}
+
+.refresh-btn:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.error-message {
+  color: #b91c1c;
+  font-weight: 700;
+}
+
+.empty-message {
+  color: #666;
+}
+
+.orders-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.order-card {
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid #f0e7e7;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #ececec;
+}
+
+.order-header h2 {
+  margin: 0;
+  font-size: 1rem;
+  color: #2f2f2f;
+  overflow-wrap: anywhere;
+}
+
+.order-header p {
+  margin: 0.3rem 0 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.status-block {
+  text-align: right;
+}
+
+.status-pill {
+  display: inline-block;
+  border-radius: 999px;
+  background: #ffe5e5;
+  color: #ad3d3d;
+  font-weight: 700;
+  padding: 0.25rem 0.6rem;
+  margin-bottom: 0.4rem;
+}
+
+.items-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.item-row {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 0.8rem;
+  align-items: center;
+  background: #faf7f7;
+  border: 1px solid #f1eaea;
+  border-radius: 10px;
+  padding: 0.6rem;
+}
+
+.pizza-visual {
+  display: flex;
+  justify-content: center;
+}
+
+.pizza-visual app-pizza-visual {
+  --pizza-visual-size: 96px;
+}
+
+.item-info h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: #2f2f2f;
+}
+
+.item-info p {
+  margin: 0.35rem 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.item-info strong {
+  color: #b63f3f;
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  margin-top: 0.85rem;
+}
+
+.actions button {
+  border: 2px solid #ef7373;
+  background: white;
+  color: #a73b3b;
+  border-radius: 8px;
+  min-height: 42px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.actions button:disabled {
+  background: #f5f5f5;
+  border-color: #d7d7d7;
+  color: #878787;
+  cursor: not-allowed;
+}
+
+.actions button:not(:disabled):hover {
+  background: #ef7373;
+  color: white;
+}
+
+.collected-section {
+  margin-top: 1.4rem;
+  border-top: 1px dashed #e2d4d4;
+  padding-top: 1rem;
+}
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 0.7rem;
+}
+
+.section-head h2 {
+  margin: 0;
+  color: #2f2f2f;
+}
+
+.section-head small {
+  color: #666;
+  font-weight: 600;
+}
+
+.collected-card {
+  background: #fdf9f9;
+}
+
+.completed-pill {
+  background: #e6fff1;
+  color: #1f8a53;
+}
+
+@media (max-width: 900px) {
+  .employee-page {
+    padding: 1rem;
+  }
+
+  .employee-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .item-row {
+    grid-template-columns: 1fr;
+  }
+
+  .actions {
+    grid-template-columns: 1fr;
+  }
+}
+
+:host-context(body.dark-mode) .employee-page {
+  background: linear-gradient(135deg, #171717 0%, #202020 100%);
+}
+
+:host-context(body.dark-mode) .employee-head h1,
+:host-context(body.dark-mode) .order-header h2,
+:host-context(body.dark-mode) .item-info h3,
+:host-context(body.dark-mode) .section-head h2 {
+  color: #f1f1f1;
+}
+
+:host-context(body.dark-mode) .order-card,
+:host-context(body.dark-mode) .item-row,
+:host-context(body.dark-mode) .actions button,
+:host-context(body.dark-mode) .refresh-btn {
+  background: #262626;
+  border-color: #3f3f3f;
+}
+
+:host-context(body.dark-mode) .order-header {
+  border-bottom-color: #424242;
+}
+
+:host-context(body.dark-mode) .order-header p,
+:host-context(body.dark-mode) .item-info p,
+:host-context(body.dark-mode) .empty-message,
+:host-context(body.dark-mode) .countdown-text,
+:host-context(body.dark-mode) .section-head small {
+  color: #c7c7c7;
+}
+
+:host-context(body.dark-mode) .status-pill {
+  background: #473030;
+  color: #ffb6b6;
+}
+
+:host-context(body.dark-mode) .completed-pill {
+  background: #1f3a2b;
+  color: #8de2b5;
+}
+
+:host-context(body.dark-mode) .collected-section {
+  border-top-color: #3f3f3f;
+}
+
+:host-context(body.dark-mode) .collected-card {
+  background: #222222;
+}
+
+:host-context(body.dark-mode) .actions button {
+  color: #ffb5b5;
+}
+
+:host-context(body.dark-mode) .actions button:not(:disabled):hover {
+  background: #ef7373;
+  border-color: #ef7373;
+  color: #fff;
+}
+
+:host-context(body.dark-mode) .actions button:disabled {
+  background: #303030;
+  border-color: #4a4a4a;
+  color: #7f7f7f;
+}
+
+:host-context(body.dark-mode) .refresh-btn {
+  color: #ffb5b5;
 }

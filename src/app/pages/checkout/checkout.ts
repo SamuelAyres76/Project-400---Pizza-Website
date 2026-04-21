@@ -47,6 +47,8 @@ export class CheckoutComponent implements OnInit {
   private undoProgressIntervalId: ReturnType<typeof setInterval> | null = null;
   private removedItemForUndo: BasketItem | null = null;
   private removedItemIndexForUndo = -1;
+  isSubmitting = false;
+  submitError = '';
 
   constructor(
     private basketService: BasketService,
@@ -224,7 +226,7 @@ export class CheckoutComponent implements OnInit {
       .flatMap(([key, count]) => Array(count).fill(key));
   }
 
-  submitOrder() {
+  async submitOrder() {
     if (this.basketItems.length === 0) {
       alert('Your basket is empty. Add a pizza before checkout.');
       return;
@@ -240,19 +242,35 @@ export class CheckoutComponent implements OnInit {
       return;
     }
 
-    this.orderService.createOrder(
-      this.form.fullName,
-      this.form.orderNotes,
-      'pickup',
-      {},
-      this.basketItems,
-      this.subtotal,
-      this.discountAmount,
-      0,
-      this.form.tip,
-      this.total
-    );
+    this.isSubmitting = true;
+    this.submitError = '';
 
-    this.router.navigate(['/tracker']);
+    try {
+      const result = await this.orderService.placeOrder(
+        this.form.fullName,
+        this.form.orderNotes,
+        'pickup',
+        {},
+        this.basketItems,
+        this.subtotal,
+        this.discountAmount,
+        0,
+        this.form.tip,
+        this.total
+      );
+
+      this.basketService.clearBasket();
+
+      this.router.navigate(['/tracker'], {
+        queryParams: {
+          orderId: result.orderId
+        }
+      });
+    } catch (error) {
+      console.error('Failed to place order:', error);
+      this.submitError = 'Could not place order right now. Please try again.';
+    } finally {
+      this.isSubmitting = false;
+    }
   }
 }

@@ -1,0 +1,31 @@
+<div class="employee-login-page">
+  <section class="login-card">
+    <h1>Employee Login</h1>
+    <p>Sign in to access the employee order dashboard.</p>
+
+    <form (ngSubmit)="submit()" #employeeLoginForm="ngForm" autocomplete="off">
+      <label for="username">Username</label>
+      <input
+        id="username"
+        type="text"
+        name="username"
+        required
+        [(ngModel)]="username"
+      />
+
+      <label for="password">Password</label>
+      <input
+        id="password"
+        type="password"
+        name="password"
+        required
+        [(ngModel)]="password"
+      />
+
+      <button type="submit" [disabled]="employeeLoginForm.invalid">Log In</button>
+      @if (errorMessage) {
+        <p class="error-message">{{ errorMessage }}</p>
+      }
+    </form>
+  </section>
+</div>

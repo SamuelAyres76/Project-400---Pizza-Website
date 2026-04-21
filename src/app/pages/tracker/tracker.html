@@ -1,19 +1,84 @@
 <div class="tracker-container">
   <div class="content">
-    <h1>Order Confirmed!</h1>
+    <h1>Track Your Order</h1>
 
-    <div class="order-details" *ngIf="order">
+    <form class="tracker-actions" (ngSubmit)="searchByOrderId()">
+      <label for="order-id-search" class="sr-only">Order ID</label>
+      <input
+        id="order-id-search"
+        name="orderIdSearch"
+        type="text"
+        [(ngModel)]="searchOrderId"
+        placeholder="Search by order ID"
+        autocomplete="off"
+      />
+      <button class="refresh-btn" type="submit" [disabled]="isLoading">Search</button>
+      <button class="refresh-btn" type="button" (click)="refreshNow()" [disabled]="isLoading">Refresh</button>
+    </form>
+
+    <p class="copy-message" *ngIf="copyMessage">{{ copyMessage }}</p>
+
+    <div class="order-details" *ngIf="backendOrder && !errorMessage">
       <div class="order-header">
-        <h2>Order ID: {{ order.orderId }}</h2>
-        <p class="timestamp">{{ order.timestamp | date:'short' }}</p>
+        <div class="order-id-row">
+          <h2>Order ID: {{ backendOrder.orderId }}</h2>
+          <button class="copy-btn" type="button" (click)="copyOrderId()" aria-label="Copy order ID">
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+              <path d="M16 1H6c-1.1 0-2 .9-2 2v12h2V3h10V1zm3 4H10c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h9c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H10V7h9v14z" fill="currentColor"></path>
+            </svg>
+            <span>Copy</span>
+          </button>
+        </div>
+        <p class="status-pill">Status: {{ formatStatus(backendOrder.status) }}</p>
+        <p class="timestamp">Created: {{ backendOrder.createdAt | date:'medium' }}</p>
+        <p class="timestamp">Estimated delivery: {{ backendOrder.estimatedDeliveryAt | date:'mediumTime' }}</p>
       </div>
 
-      <div class="json-section">
-        <h3>Order JSON Output</h3>
-        <pre class="json-output">{{ orderJson }}</pre>
-      </div>
+      <section class="status-section">
+        <h3>Live Status</h3>
+        <div class="status-track">
+          <div class="status-step" *ngFor="let step of statusSteps" [class.complete]="stepReached(step)">
+            <span class="dot"></span>
+            <span class="label">{{ formatStatus(step) }}</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="items-section">
+        <h3>Your Pizza(s)</h3>
+        <div class="items-list">
+          <article class="item-row" *ngFor="let item of backendOrder.orderJson.items">
+            <div class="pizza-visual">
+              <app-pizza-visual
+                [toppings]="getLeftOrWholeToppings(item)"
+                [toppingsHalf2]="item.divided ? getRightToppings(item) : []"
+                [divisions]="item.divided ? 1 : 0"
+                [size]="item.size"
+                [sauce]="item.sauce"
+                [cheese]="item.cheese">
+              </app-pizza-visual>
+            </div>
+
+            <div class="item-info">
+              <h4>{{ item.name }}</h4>
+              <p>{{ item.size }} inch - {{ item.sauce }} - {{ item.cheese }}</p>
+              <p>{{ getDisplayToppings(item) }}</p>
+              <strong>EUR {{ item.pricing.totalPrice.toFixed(2) }}</strong>
+            </div>
+          </article>
+        </div>
+      </section>
 
       <button class="back-btn" (click)="backToHome()">Back to Home</button>
+    </div>
+
+    <div class="state-card" *ngIf="isLoading">
+      <p>Loading your order tracker...</p>
+    </div>
+
+    <div class="state-card error" *ngIf="errorMessage && !isLoading">
+      <p>{{ errorMessage }}</p>
+      <button class="refresh-btn" type="button" (click)="refreshNow()">Try Again</button>
     </div>
   </div>
 </div>

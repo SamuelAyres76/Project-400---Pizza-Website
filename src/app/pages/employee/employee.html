@@ -1,4 +1,110 @@
-<div class="demo-unavailable">
-  <h1>Employee Portal</h1>
-  <p>Not available in demo</p>
+<div class="employee-page">
+  <div class="employee-head">
+    <div>
+      <h1>Employee Order Board</h1>
+      <p class="countdown-text" *ngIf="!isLoading">Auto refresh in {{ refreshCountdown }}s</p>
+    </div>
+    <button type="button" class="refresh-btn" (click)="loadOrders()" [disabled]="isLoading">
+      {{ isLoading ? 'Refreshing...' : 'Refresh Orders' }}
+    </button>
+  </div>
+
+  <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+  <p class="empty-message" *ngIf="!isLoading && !errorMessage && orders.length === 0">No in-progress orders right now.</p>
+
+  <div class="orders-grid" *ngIf="orders.length > 0">
+    <article class="order-card" *ngFor="let order of orders">
+      <header class="order-header">
+        <div>
+          <h2>{{ order.orderId }}</h2>
+          <p>Customer: {{ order.orderJson.customer.fullName || order.orderJson.customer.name || 'Unknown' }}</p>
+          <p *ngIf="order.orderJson.customer.orderNotes">Notes: {{ order.orderJson.customer.orderNotes }}</p>
+        </div>
+        <div class="status-block">
+          <span class="status-pill">{{ formatStatus(order.status) }}</span>
+          <small>ETA {{ order.estimatedDeliveryAt | date:'shortTime' }}</small>
+        </div>
+      </header>
+
+      <div class="items-list">
+        <div class="item-row" *ngFor="let item of order.orderJson.items">
+          <div class="pizza-visual">
+            <app-pizza-visual
+              [toppings]="getLeftOrWholeToppings(item)"
+              [toppingsHalf2]="item.divided ? getRightToppings(item) : []"
+              [divisions]="item.divided ? 1 : 0"
+              [size]="item.size"
+              [sauce]="item.sauce"
+              [cheese]="item.cheese">
+            </app-pizza-visual>
+          </div>
+
+          <div class="item-info">
+            <h3>{{ item.name }}</h3>
+            <p>{{ item.size }} inch • {{ item.sauce }} • {{ item.cheese }}</p>
+            <p>{{ getDisplayToppings(item) }}</p>
+            <strong>€{{ item.pricing.totalPrice.toFixed(2) }}</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button
+          *ngFor="let status of actionStatuses"
+          type="button"
+          (click)="updateStatus(order, status)"
+          [disabled]="isUpdating(order.orderId) || order.status === status">
+          {{ order.status === status ? formatStatus(status) + ' (Current)' : (status === 'completed' ? 'Mark Collected' : 'Set ' + formatStatus(status)) }}
+        </button>
+      </div>
+    </article>
+  </div>
+
+  <section class="collected-section">
+    <div class="section-head">
+      <h2>Collected</h2>
+      <small>{{ collectedOrders.length }} order{{ collectedOrders.length !== 1 ? 's' : '' }}</small>
+    </div>
+
+    <p class="empty-message" *ngIf="!isLoading && !errorMessage && collectedOrders.length === 0">
+      No collected orders yet.
+    </p>
+
+    <div class="orders-grid" *ngIf="collectedOrders.length > 0">
+      <article class="order-card collected-card" *ngFor="let order of collectedOrders">
+        <header class="order-header">
+          <div>
+            <h2>{{ order.orderId }}</h2>
+            <p>Customer: {{ order.orderJson.customer.fullName || order.orderJson.customer.name || 'Unknown' }}</p>
+          </div>
+          <div class="status-block">
+            <span class="status-pill completed-pill">Collected</span>
+            <small>ETA {{ order.estimatedDeliveryAt | date:'shortTime' }}</small>
+          </div>
+        </header>
+
+        <div class="items-list">
+          <div class="item-row" *ngFor="let item of order.orderJson.items">
+            <div class="pizza-visual">
+              <app-pizza-visual
+                [toppings]="getLeftOrWholeToppings(item)"
+                [toppingsHalf2]="item.divided ? getRightToppings(item) : []"
+                [divisions]="item.divided ? 1 : 0"
+                [size]="item.size"
+                [sauce]="item.sauce"
+                [cheese]="item.cheese">
+              </app-pizza-visual>
+            </div>
+
+            <div class="item-info">
+              <h3>{{ item.name }}</h3>
+              <p>{{ item.size }} inch • {{ item.sauce }} • {{ item.cheese }}</p>
+              <p>{{ getDisplayToppings(item) }}</p>
+              <strong>€{{ item.pricing.totalPrice.toFixed(2) }}</strong>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
 </div>

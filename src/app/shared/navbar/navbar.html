@@ -51,16 +51,22 @@
       <!-- Divider -->
       <div class="divider"></div>
 
-      <!-- Staff Section -->
-      <div class="nav-grid">
-        <a routerLink="/employee" routerLinkActive="active" class="nav-item" (click)="closeMenu()">
-          <img src="assets/images/sidebar/employee.png" alt="Employee" class="nav-icon" />
-          <span class="nav-label">Employee</span>
-        </a>
-      </div>
-
       <!-- Spacer -->
       <div class="spacer"></div>
+
+      <div class="bottom-actions">
+        <a *ngIf="!isEmployeeAuthenticated" routerLink="/employee-login" class="action-btn auth-btn" (click)="closeMenu()">
+          Employee Login
+        </a>
+
+        <a *ngIf="isEmployeeAuthenticated" routerLink="/employee" class="action-btn auth-btn" (click)="closeMenu()">
+          Employee Portal
+        </a>
+
+        <button *ngIf="isEmployeeAuthenticated" type="button" class="logout-btn" (click)="logoutEmployee()">
+          Log Out
+        </button>
+      </div>
     </div>
   </div>
 </header>
