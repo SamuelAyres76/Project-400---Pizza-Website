@@ -1,4 +1,6 @@
-/* App component styles */
+/****************************************/
+/* App Styles */
+/****************************************/
 
 .floating-checkout.desktop {
 	position: fixed;
@@ -121,6 +123,9 @@
 	border: 2px solid #b91c1c;
 }
 
+/****************************************/
+/* Responsive Styles */
+/****************************************/
 @media (max-width: 1024px) {
 	.floating-checkout.desktop {
 		display: none;
@@ -131,6 +136,9 @@
 	}
 }
 
+/****************************************/
+/* Dark Mode Styles */
+/****************************************/
 :host-context(body.dark-mode) .floating-checkout.desktop {
 	background: rgba(28, 28, 28, 0.96);
 	border-color: #3f3f3f;

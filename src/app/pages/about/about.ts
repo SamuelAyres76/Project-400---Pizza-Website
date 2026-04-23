@@ -16,6 +16,9 @@ interface CarouselItem {
   styleUrl: './about.css',
 })
 export class About implements OnInit, OnDestroy, AfterViewInit {
+  /****************************************/
+  /* Component State */
+  /****************************************/
   @ViewChild('carouselList', { static: false }) carouselList!: ElementRef;
   
   private autoPlayInterval: any;
@@ -34,6 +37,9 @@ export class About implements OnInit, OnDestroy, AfterViewInit {
   currentIndex = 0;
   carouselItems: CarouselItem[] = [];
 
+  /****************************************/
+  /* Lifecycle */
+  /****************************************/
   ngOnInit() {
     this.initializeCarousel();
     this.startAutoPlay();
@@ -47,8 +53,10 @@ export class About implements OnInit, OnDestroy, AfterViewInit {
     this.stopAutoPlay();
   }
 
+  /****************************************/
+  /* Carousel Navigation */
+  /****************************************/
   initializeCarousel() {
-    // Initialize with 5 items: hide, prev, act, next, new-next
     const total = this.employees.length;
     this.carouselItems = [
       { ...this.employees[(this.currentIndex - 2 + total) % total], class: 'hide' },
@@ -61,24 +69,20 @@ export class About implements OnInit, OnDestroy, AfterViewInit {
 
   next() {
     this.currentIndex = (this.currentIndex + 1) % this.employees.length;
-    
-    // Step 1: Update classes to trigger transitions
+
     this.carouselItems[0].class = 'hide';
     this.carouselItems[1].class = 'prev';
     this.carouselItems[2].class = 'act';
     this.carouselItems[3].class = 'next';
-    
-    // Calculate new item
+
     const newIndex = (this.currentIndex + 2) % this.employees.length;
     const newItem = {
       ...this.employees[newIndex],
       class: 'new-next'
     };
-    
-    // Add new item immediately (it starts off-screen)
+
     this.carouselItems.push(newItem);
-    
-    // Step 2: After transition completes, clean up the array
+
     setTimeout(() => {
       this.carouselItems.shift();
     }, 1000);
@@ -86,31 +90,29 @@ export class About implements OnInit, OnDestroy, AfterViewInit {
 
   prev() {
     this.currentIndex = (this.currentIndex - 1 + this.employees.length) % this.employees.length;
-    
-    // Calculate new item
+
     const newIndex = (this.currentIndex - 2 + this.employees.length) % this.employees.length;
     const newItem = {
       ...this.employees[newIndex],
       class: 'hide'
     };
-    
-    // Add new item at the beginning (it starts off-screen)
+
     this.carouselItems.unshift(newItem);
-    
-    // Step 1: Update classes to trigger transitions
+
     this.carouselItems[1].class = 'prev';
     this.carouselItems[2].class = 'act';
     this.carouselItems[3].class = 'next';
     this.carouselItems[4].class = 'new-next';
-    
-    // Step 2: After transition completes, clean up the array
+
     setTimeout(() => {
       this.carouselItems.pop();
     }, 1000);
   }
 
+  /****************************************/
+  /* User Interaction */
+  /****************************************/
   onSlideClick(item: CarouselItem) {
-    // Manual scrolling disabled
     return;
   }
 
@@ -134,16 +136,17 @@ export class About implements OnInit, OnDestroy, AfterViewInit {
 
     if (Math.abs(diff) > swipeThreshold) {
       if (diff > 0) {
-        // Swipe left - next
         this.next();
       } else {
-        // Swipe right - prev
         this.prev();
       }
       this.resetAutoPlay();
     }
   }
 
+  /****************************************/
+  /* Auto Play */
+  /****************************************/
   startAutoPlay() {
     this.autoPlayInterval = setInterval(() => {
       this.next();
@@ -162,6 +165,9 @@ export class About implements OnInit, OnDestroy, AfterViewInit {
     this.startAutoPlay();
   }
 
+  /****************************************/
+  /* Template Helpers */
+  /****************************************/
   trackByFn(index: number, item: CarouselItem) {
     return `${item.id}-${index}`;
   }

@@ -15,6 +15,9 @@ import { PizzaVisualComponent } from '../../shared/pizza-visual/pizza-visual';
   styleUrl: './tracker.css',
 })
 export class TrackerComponent implements OnInit, OnDestroy {
+  /****************************************/
+  /* Component State */
+  /****************************************/
   backendOrder: BackendOrderRecord | null = null;
   orderId = '';
   searchOrderId = '';
@@ -41,8 +44,10 @@ export class TrackerComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute
   ) {}
 
+  /****************************************/
+  /* Lifecycle */
+  /****************************************/
   ngOnInit() {
-    // Use observable (not snapshot) - snapshot is unreliable with hash location
     this.routeSub = this.route.queryParamMap.subscribe(params => {
       const paramOrderId = params.get('orderId');
       const storedOrderId = this.orderService.getCurrentBackendOrderId();
@@ -54,7 +59,6 @@ export class TrackerComponent implements OnInit, OnDestroy {
         return;
       }
 
-      // Only start polling once, even if query params re-emit
       if (this.orderId === resolvedId) {
         return;
       }
@@ -65,6 +69,9 @@ export class TrackerComponent implements OnInit, OnDestroy {
     });
   }
 
+  /****************************************/
+  /* Polling */
+  /****************************************/
   private startPolling() {
     if (this.pollId) {
       clearInterval(this.pollId);
@@ -89,6 +96,9 @@ export class TrackerComponent implements OnInit, OnDestroy {
     }
   }
 
+  /****************************************/
+  /* Order Loading */
+  /****************************************/
   loadOrder(showLoader: boolean) {
     if (showLoader) {
       this.isLoading = true;
@@ -120,6 +130,9 @@ export class TrackerComponent implements OnInit, OnDestroy {
     this.loadOrder(true);
   }
 
+  /****************************************/
+  /* Search And Copy */
+  /****************************************/
   searchByOrderId() {
     const nextOrderId = this.searchOrderId.trim();
     if (!nextOrderId) {
@@ -161,6 +174,9 @@ export class TrackerComponent implements OnInit, OnDestroy {
     this.router.navigate(['/']);
   }
 
+  /****************************************/
+  /* Display Helpers */
+  /****************************************/
   formatStatus(status: OrderStatus): string {
     return status.charAt(0).toUpperCase() + status.slice(1);
   }
@@ -199,6 +215,9 @@ export class TrackerComponent implements OnInit, OnDestroy {
       .flatMap(([key, count]) => Array(count).fill(key));
   }
 
+  /****************************************/
+  /* Status Progress */
+  /****************************************/
   stepReached(status: OrderStatus): boolean {
     if (!this.backendOrder) {
       return false;

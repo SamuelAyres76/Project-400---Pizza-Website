@@ -7,7 +7,6 @@
       </a>
     </div>
 
-    <!-- menu button on the right (desktop animated menu #25 adapted) -->
     <button class="menu-btn" aria-label="Open menu" (click)="toggleMenu()" [class.open]="isOpen">
       <span class="bars">
         <i></i>
@@ -21,10 +20,8 @@
     </button>
   </div>
 
-  <!-- sliding panel from the right with icon-based navigation -->
   <div class="panel" [class.open]="isOpen">
     <div class="panel-inner">
-      <!-- Main Navigation Grid -->
       <div class="nav-grid">
         <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-item" (click)="closeMenu()">
           <img src="assets/images/sidebar/home.png" alt="Home" class="nav-icon" />
@@ -48,10 +45,8 @@
         </a>
       </div>
 
-      <!-- Divider -->
+      <!-- Divider & Spacer -->
       <div class="divider"></div>
-
-      <!-- Spacer -->
       <div class="spacer"></div>
 
       <div class="bottom-actions">

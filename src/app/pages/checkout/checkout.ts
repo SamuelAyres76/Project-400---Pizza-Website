@@ -20,6 +20,9 @@ interface CheckoutForm {
   styleUrl: './checkout.css',
 })
 export class CheckoutComponent implements OnInit {
+  /****************************************/
+  /* Component State */
+  /****************************************/
   basketItems: BasketItem[] = [];
   form: CheckoutForm = {
     fullName: '',
@@ -63,11 +66,13 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
+  /****************************************/
+  /* Totals And Pricing */
+  /****************************************/
   calculateTotals() {
     this.subtotal = this.basketService.getTotalPrice();
     this.tip = this.form.tip;
 
-    // Demo mode: discount is applied after all charges so total is always zero.
     const preDiscountTotal = this.subtotal + this.tip;
     this.discountAmount = preDiscountTotal;
     this.total = preDiscountTotal - this.discountAmount;
@@ -79,6 +84,9 @@ export class CheckoutComponent implements OnInit {
     this.calculateTotals();
   }
 
+  /****************************************/
+  /* Basket Actions */
+  /****************************************/
   removeItem(id: string) {
     const index = this.basketItems.findIndex(item => item.id === id);
     if (index === -1) {
@@ -137,6 +145,9 @@ export class CheckoutComponent implements OnInit {
     }
   }
 
+  /****************************************/
+  /* Clear Basket Flow */
+  /****************************************/
   promptClearBasket() {
     this.showClearConfirmation = true;
     this.canConfirmClear = false;
@@ -193,6 +204,9 @@ export class CheckoutComponent implements OnInit {
     this.router.navigate(['/browse']);
   }
 
+  /****************************************/
+  /* Display Helpers */
+  /****************************************/
   canShowPaymentDetails(): boolean {
     return true;
   }
@@ -226,6 +240,9 @@ export class CheckoutComponent implements OnInit {
       .flatMap(([key, count]) => Array(count).fill(key));
   }
 
+  /****************************************/
+  /* Order Submission */
+  /****************************************/
   async submitOrder() {
     if (this.basketItems.length === 0) {
       alert('Your basket is empty. Add a pizza before checkout.');

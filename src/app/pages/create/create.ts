@@ -27,6 +27,9 @@ interface Topping {
   styleUrl: './create.css',
 })
 export class CreateComponent implements OnInit {
+  /****************************************/
+  /* Component State */
+  /****************************************/
   pizza: PizzaState = {
     size: '12',
     sauce: 'margharita',
@@ -84,15 +87,20 @@ export class CreateComponent implements OnInit {
 
   constructor(private router: Router, private basketService: BasketService) {}
 
+  /****************************************/
+  /* Lifecycle */
+  /****************************************/
   ngOnInit() {
     this.loadPreset();
   }
 
+  /****************************************/
+  /* Preset Loading */
+  /****************************************/
   loadPreset() {
     const state = window.history.state;
     if (state && state.preset) {
       const preset = state.preset;
-      // Set toppings from preset
       if (preset.toppings && Array.isArray(preset.toppings)) {
         preset.toppings.forEach((topping: any) => {
           const toppingValue = typeof topping === 'string' ? topping : topping.value;
@@ -108,6 +116,9 @@ export class CreateComponent implements OnInit {
     }
   }
 
+  /****************************************/
+  /* Builder Actions */
+  /****************************************/
   selectSize(size: string) {
     this.pizza.size = size;
     this.triggerBounce();
@@ -155,6 +166,9 @@ export class CreateComponent implements OnInit {
     }, 600);
   }
 
+  /****************************************/
+  /* Pricing And Display Helpers */
+  /****************************************/
   getPizzaScale(): number {
     switch (this.pizza.size) {
       case '10':
@@ -210,6 +224,9 @@ export class CreateComponent implements OnInit {
     return this.getSizePrice() + this.getToppingsCost();
   }
 
+  /****************************************/
+  /* Basket Action */
+  /****************************************/
   addToBasket() {
     const basketItem = {
       id: this.basketService.generateItemId(),

@@ -1,3 +1,6 @@
+/****************************************/
+/* Page Layout */
+/****************************************/
 .employee-login-page {
   min-height: calc(100vh - 220px);
   display: flex;
@@ -6,6 +9,9 @@
   padding: 32px 16px;
 }
 
+/****************************************/
+/* Login Card */
+/****************************************/
 .login-card {
   width: 100%;
   max-width: 420px;
@@ -74,6 +80,9 @@ button:disabled {
   font-weight: 600;
 }
 
+/****************************************/
+/* Dark Mode Styles */
+/****************************************/
 :host-context(body.dark-mode) .login-card {
   background: #1f1f1f;
   border-color: rgba(255, 156, 156, 0.25);

@@ -1,4 +1,5 @@
 <div class="create-container">
+  <!-- ===== Mobile Preview ===== -->
   <div class="mobile-top-stack">
     <div class="progress-bar">
       <span class="step active">Build</span>
@@ -12,10 +13,8 @@
           <div class="pizza" 
                [style.transform]="'scale(' + getPizzaScale() + ')'"
                [style.transition]="isBouncing ? 'none' : 'transform 0.3s ease'">
-            <!-- Base -->
             <img class="pizza-layer" src="assets/images/pizzaTextures/pizza_base.png" alt="base" />
-            
-            <!-- Sauces -->
+
             <img class="pizza-layer" 
                  [src]="getPizzaImagePath('margharita')" 
                  [style.opacity]="pizza.sauce === 'margharita' ? 1 : 0"
@@ -29,7 +28,6 @@
                  [style.opacity]="pizza.sauce === 'white' ? 1 : 0"
                  alt="white garlic" />
 
-            <!-- Cheeses -->
             <img class="pizza-layer" 
                  [src]="getPizzaImagePath('mozzarella')" 
                  [style.opacity]="pizza.cheese === 'mozzarella' ? 1 : 0"
@@ -43,13 +41,11 @@
                  [style.opacity]="pizza.cheese === 'cheddar' ? 1 : 0"
                  alt="cheddar" />
 
-            <!-- Dividers -->
             <img class="pizza-layer" 
                  [src]="getPizzaImagePath('divider_half')" 
                  [style.opacity]="pizza.divided ? 1 : 0"
                  alt="half divider" />
 
-            <!-- Toppings - Full Pizza or Half 1 -->
             <img *ngFor="let topping of allToppings" 
                  class="pizza-layer"
                  [ngClass]="pizza.divided ? 'pizza-half-left' : ''"
@@ -57,7 +53,6 @@
                  [style.opacity]="hasToppingOnHalf(topping.value, 1) ? 1 : 0"
                  [attr.alt]="topping.label" />
 
-            <!-- Toppings - Half 2 (only when divided) -->
             <img *ngFor="let topping of allToppings" 
                  class="pizza-layer pizza-half-right"
                  [src]="getPizzaImagePath(topping.value)" 
@@ -69,7 +64,9 @@
     </div>
   </div>
 
+  <!-- ===== Desktop Layout ===== -->
   <div class="create-layout">
+    <!-- ===== Desktop Preview ===== -->
     <aside class="desktop-pizza-panel" aria-label="Live pizza preview">
       <div class="desktop-pizza-sticky">
         <div class="desktop-pizza-square">
@@ -142,7 +139,7 @@
       <h1>Create your Pizza</h1>
       <p class="page-helper">Use the buttons to make your pizza!</p>
 
-    <!-- Size Section -->
+    <!-- ===== Size Section ===== -->
     <section class="selection-section">
       <h2>1. Select the Size - <span class="note">select one</span></h2>
       <div class="options-grid single-row-options">
@@ -156,7 +153,7 @@
       </div>
     </section>
 
-    <!-- Sauce Section -->
+    <!-- ===== Sauce Section ===== -->
     <section class="selection-section">
       <h2>2. Select the Sauce - <span class="note">select one</span></h2>
       <div class="options-grid single-row-options">
@@ -169,7 +166,7 @@
       </div>
     </section>
 
-    <!-- Cheese Section -->
+    <!-- ===== Cheese Section ===== -->
     <section class="selection-section">
       <h2>3. Select the Cheese - <span class="note">select one</span></h2>
       <div class="options-grid single-row-options">
@@ -182,7 +179,7 @@
       </div>
     </section>
 
-    <!-- Divide Section -->
+    <!-- ===== Divide Section ===== -->
     <section class="selection-section">
       <h2>4. Divide your Pizza - <span class="note">select one</span></h2>
       <div class="divide-options">
@@ -199,7 +196,7 @@
       </div>
     </section>
 
-    <!-- Toppings Section -->
+    <!-- ===== Toppings Section ===== -->
     <section class="selection-section">
       <h2>
         5. Choose your Toppings
@@ -220,7 +217,6 @@
         </p>
       </div>
 
-      <!-- Single Pizza or First Half -->
       <div *ngIf="!pizza.divided">
         <div class="toppings-grid">
           <div *ngFor="let topping of allToppings" class="topping-item">
@@ -238,7 +234,6 @@
         </div>
       </div>
 
-      <!-- Divided Pizza - Two Halves -->
       <div *ngIf="pizza.divided" class="divided-toppings">
         <div class="half-section">
           <h3 class="half-title">1st Half</h3>
@@ -278,7 +273,7 @@
       </div>
     </section>
 
-    <!-- Basket / Checkout Actions -->
+    <!-- ===== Basket Section ===== -->
     <section class="selection-section">
       <h2>6. Add to Basket</h2>
       <div class="price-summary">

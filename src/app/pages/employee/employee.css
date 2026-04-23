@@ -1,3 +1,6 @@
+/****************************************/
+/* Page Layout */
+/****************************************/
 .employee-page {
   min-height: 100vh;
   padding: 2rem;
@@ -40,6 +43,9 @@
   cursor: progress;
 }
 
+/****************************************/
+/* Status Messages */
+/****************************************/
 .error-message {
   color: #b91c1c;
   font-weight: 700;
@@ -49,6 +55,9 @@
   color: #666;
 }
 
+/****************************************/
+/* Order Cards */
+/****************************************/
 .orders-grid {
   display: grid;
   gap: 1rem;
@@ -168,6 +177,9 @@
   color: white;
 }
 
+/****************************************/
+/* Collected Section */
+/****************************************/
 .collected-section {
   margin-top: 1.4rem;
   border-top: 1px dashed #e2d4d4;
@@ -200,6 +212,9 @@
   color: #1f8a53;
 }
 
+/****************************************/
+/* Responsive Styles */
+/****************************************/
 @media (max-width: 900px) {
   .employee-page {
     padding: 1rem;
@@ -219,6 +234,9 @@
   }
 }
 
+/****************************************/
+/* Dark Mode Styles */
+/****************************************/
 :host-context(body.dark-mode) .employee-page {
   background: linear-gradient(135deg, #171717 0%, #202020 100%);
 }

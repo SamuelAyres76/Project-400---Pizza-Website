@@ -1,3 +1,6 @@
+/****************************************/
+/* Page Layout */
+/****************************************/
 .home-container {
   max-width: 100%;
   margin: 0 auto;
@@ -12,7 +15,9 @@
   --carousel-scroll-duration: 40s;
 }
 
+/****************************************/
 /* Carousel */
+/****************************************/
 .carousel-wrapper {
   overflow: hidden;
   margin-bottom: var(--home-section-gap);
@@ -123,6 +128,9 @@
   margin: 0;
 }
 
+/****************************************/
+/* Popular Section */
+/****************************************/
 .popular-section {
   max-width: 1200px;
   margin: 0 auto 2.25rem;
@@ -205,7 +213,9 @@
   transform: translateY(0);
 }
 
+/****************************************/
 /* Action Buttons */
+/****************************************/
 .action-buttons {
   display: flex;
   justify-content: center;
@@ -252,6 +262,9 @@
   font-size: 1.5rem;
 }
 
+/****************************************/
+/* Dark Mode Styles */
+/****************************************/
 :host-context(body.dark-mode) .pizza-card,
 :host-context(body.dark-mode) .popular-card,
 :host-context(body.dark-mode) .action-btn {
@@ -274,7 +287,9 @@
   color: #c7c7c7;
 }
 
-/* Mobile responsiveness */
+/****************************************/
+/* Responsive Styles */
+/****************************************/
 @media (max-width: 768px) {
   :root {
     --home-section-gap: 1.75rem;

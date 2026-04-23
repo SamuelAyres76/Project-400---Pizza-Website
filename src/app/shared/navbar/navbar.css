@@ -1,9 +1,17 @@
+/****************************************/
+/* Variables */
+/****************************************/
+
 :root{
   --panel-width: 420px;
   --navbar-height: 76.8px;
   --coral-red: #EF7373;
   --coral-light: #F36C6C;
 }
+
+/****************************************/
+/* Navbar */
+/****************************************/
 
 .navbar{
   position: relative;
@@ -39,7 +47,10 @@
   .site-logo{ height: clamp(33.6px, 9.6vw, 67.2px); }
 }
 
-/* Menu button */
+/****************************************/
+/* Menu Button */
+/****************************************/
+
 .menu-btn{
   position: fixed;
   right: 18px;
@@ -94,7 +105,10 @@
 .menu-btn:hover{ transform: translateY(-3px) scale(1.02); box-shadow: 0 10px 26px rgba(0,0,0,0.14); }
 .menu-btn:active{ transform: translateY(-1px) scale(.99); }
 
-/* Sliding panel */
+/****************************************/
+/* Sliding Panel */
+/****************************************/
+
 .panel{
   position: fixed;
   right: 0;
@@ -118,7 +132,10 @@
   flex-direction: column;
 }
 
+/****************************************/
 /* Navigation Grid */
+/****************************************/
+
 .nav-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -175,7 +192,10 @@
   border-radius: 2px;
 }
 
+/****************************************/
 /* Bottom Actions */
+/****************************************/
+
 .bottom-actions {
   display: flex;
   flex-direction: column;
@@ -288,7 +308,10 @@
   transform: translateY(-2px);
 }
 
-/* Responsive */
+/****************************************/
+/* Responsive Styles */
+/****************************************/
+
 @media (max-width: 720px){
   .menu-btn{ right: 12px; }
   :root{ --panel-width: 90vw; }
@@ -316,6 +339,10 @@
 
 .menu-btn:focus{ outline: 3px solid rgba(243,108,108,0.12); }
 .nav-item:focus{ outline: 3px solid rgba(255,255,255,0.3); outline-offset: 2px; }
+
+/****************************************/
+/* Theme Button */
+/****************************************/
 
 .theme-btn {
   position: fixed;
@@ -352,6 +379,10 @@
     font-size: 12px;
   }
 }
+
+/****************************************/
+/* Dark Mode Styles */
+/****************************************/
 
 :host-context(body.dark-mode) .navbar {
   background: #121212;

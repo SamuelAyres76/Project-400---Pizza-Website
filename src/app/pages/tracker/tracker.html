@@ -1,7 +1,9 @@
 <div class="tracker-container">
   <div class="content">
+    <!-- ===== Header ===== -->
     <h1>Track Your Order</h1>
 
+    <!-- ===== Search Actions ===== -->
     <form class="tracker-actions" (ngSubmit)="searchByOrderId()">
       <label for="order-id-search" class="sr-only">Order ID</label>
       <input
@@ -18,6 +20,7 @@
 
     <p class="copy-message" *ngIf="copyMessage">{{ copyMessage }}</p>
 
+  <!-- ===== Order Details ===== -->
     <div class="order-details" *ngIf="backendOrder && !errorMessage">
       <div class="order-header">
         <div class="order-id-row">
@@ -72,10 +75,12 @@
       <button class="back-btn" (click)="backToHome()">Back to Home</button>
     </div>
 
+    <!-- ===== Loading State ===== -->
     <div class="state-card" *ngIf="isLoading">
       <p>Loading your order tracker...</p>
     </div>
 
+    <!-- ===== Error State ===== -->
     <div class="state-card error" *ngIf="errorMessage && !isLoading">
       <p>{{ errorMessage }}</p>
       <button class="refresh-btn" type="button" (click)="refreshNow()">Try Again</button>

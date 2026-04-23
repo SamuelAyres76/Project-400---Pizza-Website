@@ -12,6 +12,9 @@ import { BackendOrderRecord, OrderService, OrderStatus } from '../../services/or
   styleUrl: './employee.css',
 })
 export class EmployeeComponent implements OnInit, OnDestroy {
+  /****************************************/
+  /* Component State */
+  /****************************************/
   orders: BackendOrderRecord[] = [];
   collectedOrders: BackendOrderRecord[] = [];
   isLoading = true;
@@ -35,6 +38,9 @@ export class EmployeeComponent implements OnInit, OnDestroy {
 
   constructor(private orderService: OrderService) {}
 
+  /****************************************/
+  /* Lifecycle */
+  /****************************************/
   ngOnInit() {
     this.loadOrders();
     this.startAutoRefresh();
@@ -47,6 +53,9 @@ export class EmployeeComponent implements OnInit, OnDestroy {
     }
   }
 
+  /****************************************/
+  /* Data Loading */
+  /****************************************/
   loadOrders() {
     this.isLoading = true;
     this.errorMessage = '';
@@ -82,6 +91,9 @@ export class EmployeeComponent implements OnInit, OnDestroy {
     }, 1000);
   }
 
+  /****************************************/
+  /* Order Actions */
+  /****************************************/
   updateStatus(order: BackendOrderRecord, status: Exclude<OrderStatus, 'received'>) {
     this.updatingMap[order.orderId] = true;
     this.orderService.updateOrderStatus(order.orderId, status).subscribe({
@@ -105,6 +117,9 @@ export class EmployeeComponent implements OnInit, OnDestroy {
     return status.charAt(0).toUpperCase() + status.slice(1);
   }
 
+  /****************************************/
+  /* Toppings Helpers */
+  /****************************************/
   getDisplayToppings(item: any): string {
     const source = item.divided
       ? { ...item.toppings?.left, ...item.toppings?.right }

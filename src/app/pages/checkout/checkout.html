@@ -1,5 +1,5 @@
 <div class="checkout-container">
-  <!-- Progress Bar -->
+  <!-- ===== Progress Bar ===== -->
   <div class="progress-bar">
     <span class="step">Step 1: Build pizza</span>
     <span class="step">Step 2: Review cart</span>
@@ -15,7 +15,7 @@
       <p>Order tracking updates every 30 seconds.</p>
     </div>
 
-    <!-- Basket Items -->
+    <!-- ===== Basket Items ===== -->
     <section class="basket-section">
       <div class="basket-headline-row">
         <h2>Your Pizzas</h2>
@@ -71,7 +71,7 @@
       </ng-template>
     </section>
 
-    <!-- Personal Details -->
+    <!-- ===== Personal Details ===== -->
     <section class="details-section">
       <h2>Your Details</h2>
       
@@ -113,7 +113,7 @@
       </div>
     </section>
 
-    <!-- Order Total -->
+    <!-- ===== Order Total ===== -->
     <section class="total-section">
       <div class="total-row">
         <span>Subtotal</span>
@@ -133,7 +133,7 @@
       </div>
     </section>
 
-    <!-- Buy Button -->
+    <!-- ===== Buy Button ===== -->
     <button class="buy-btn" [disabled]="basketItems.length === 0 || isSubmitting" (click)="submitOrder()">
       {{ isSubmitting ? 'Placing Order...' : 'Buy Now' }}
     </button>

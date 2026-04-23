@@ -1,9 +1,14 @@
+/****************************************/
+/* Page Layout */
+/****************************************/
 .checkout-container {
   padding: 0;
   margin: 0;
 }
 
+/****************************************/
 /* Progress Bar */
+/****************************************/
 .progress-bar {
   display: flex;
   gap: 15px;
@@ -34,7 +39,9 @@
   color: #999;
 }
 
+/****************************************/
 /* Main Content */
+/****************************************/
 .content {
   padding: 2rem;
   max-width: 1060px;
@@ -73,7 +80,9 @@
   color: #1f2937;
 }
 
+/****************************************/
 /* Basket Section */
+/****************************************/
 .basket-section {
   margin-bottom: 3rem;
 }
@@ -247,7 +256,9 @@
   color: #334155;
 }
 
+/****************************************/
 /* Details Section */
+/****************************************/
 .details-section {
   margin-bottom: 3rem;
   background: #ffffff;
@@ -333,7 +344,9 @@
   color: white;
 }
 
+/****************************************/
 /* Delivery Section */
+/****************************************/
 .delivery-section {
   background: white;
   border: 1px solid #f0e7e7;
@@ -422,7 +435,9 @@
   min-width: 0;
 }
 
+/****************************************/
 /* Total Section */
+/****************************************/
 .total-section {
   background: white;
   border: 1px solid #f0e7e7;
@@ -460,7 +475,9 @@
   color: #FF5964;
 }
 
-/* Buy Button */
+/****************************************/
+/* Primary Action */
+/****************************************/
 .buy-btn {
   width: 100%;
   background: #b91c1c;
@@ -571,7 +588,9 @@ textarea:focus-visible {
   outline-offset: 2px;
 }
 
-/* Mobile Responsiveness */
+/****************************************/
+/* Responsive Styles */
+/****************************************/
 @media (max-width: 768px) {
   .content {
     padding: 1.2rem 0.9rem;
@@ -619,6 +638,9 @@ textarea:focus-visible {
   }
 }
 
+/****************************************/
+/* Dark Mode Styles */
+/****************************************/
 :host-context(body.dark-mode) .step {
   background: #2c2c2c;
   color: #d7d7d7;

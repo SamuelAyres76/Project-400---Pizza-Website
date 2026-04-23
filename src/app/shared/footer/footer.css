@@ -1,3 +1,7 @@
+/****************************************/
+/* Footer Styles */
+/****************************************/
+
 .footer {
   position: relative;
   background: transparent;
@@ -28,6 +32,10 @@
   pointer-events: none;
   z-index: 1;
 }
+
+/****************************************/
+/* Wave Animation */
+/****************************************/
 
 .wave-container {
   position: absolute;
@@ -62,6 +70,10 @@
 }
 
 
+
+/****************************************/
+/* Footer Content */
+/****************************************/
 
 .footer-content {
   position: relative;
@@ -187,6 +199,10 @@
   font-style: italic;
   margin: 0;
 }
+
+/****************************************/
+/* Responsive Styles */
+/****************************************/
 
 @media (max-width: 768px) {
   .wave-container {
