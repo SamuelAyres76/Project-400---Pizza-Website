@@ -1,18 +1,21 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideHttpClient } from '@angular/common/http';
+import { provideRouter } from '@angular/router';
 
-import { OrderTracker } from './order-tracker';
+import { TrackerComponent } from './tracker';
 
 describe('OrderTracker', () => {
-  let component: OrderTracker;
-  let fixture: ComponentFixture<OrderTracker>;
+  let component: TrackerComponent;
+  let fixture: ComponentFixture<TrackerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [OrderTracker]
+      imports: [TrackerComponent],
+      providers: [provideHttpClient(), provideRouter([])],
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(OrderTracker);
+    fixture = TestBed.createComponent(TrackerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
